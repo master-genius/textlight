@@ -44,7 +44,7 @@ async function getCount() {
 
 function fmtDoc(d) {
   return `<div class="card"><a href="/page/show?id=${d.id}" target="_blank">
-    <h4 style="color:#4a4a4f;">${d.title.trim()}</h4>
+    <h4 style="color:#4a4a4f;" class="title-inline">${d.title.trim()}</h4>
     <p style="color:#676869;">
      ${d.updatetime.substring(0,16).replace('T', ' ')}
     </p>
@@ -53,8 +53,11 @@ function fmtDoc(d) {
 
 function docList () {
   let qstr = parseArgs();
+  let page = wo.get('doc-home-page');
+  qstr += `&pagesize=${_pagesize}&offset=${_pagesize * (page-1)}`;
   apiCall('/api/content?type=news'+qstr).then(d => {
     _dm.renderList(document.getElementById('doc-list'), d.data, fmtDoc);
+    document.body.scrollTop = 0;
   }).catch(err => {
 
   });
@@ -72,6 +75,29 @@ async function searchDoc(t) {
   docList();
 }
 
+var _inputOutTime = 0;
+async function listenOrSearch(t) {
+  if (_inputOutTime == 0) {
+    _inputOutTime = Date.now();
+    setTimeout(() => {
+      _inputOutTime = 0;
+      wo.set('doc-home-kwd', t.value.trim());
+      //t.onchange(t);
+      searchDoc(t);
+    }, 666);
+    return ;
+  }
+}
+
+async function getSiteInfo() {
+  return apiCall('/api/siteinfo').then(d => {
+    if (d.status === 'OK') {
+      return d.data;
+    }
+  })
+  .catch(err => {});
+}
+
 window.onload = async function() {
   _pagi.pageTemp('#pagination');
   _pagi.pageEvent((p) => {
@@ -81,4 +107,10 @@ window.onload = async function() {
   document.getElementById('search-kwd').value = wo.get('doc-home-kwd');
   await getCount();
   docList();
+
+  let si = await getSiteInfo();
+  if (si) {
+    document.getElementById('sitename').innerHTML = si.sitename;
+    document.getElementById('sitename').cite = location.host;
+  }
 };

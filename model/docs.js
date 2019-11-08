@@ -283,8 +283,19 @@ docs.prototype.setPublic = async function (idlist, stat = 1, uid = null) {
   return ret.rowCount;
 };
 
+docs.prototype.setTags = async function (idlist, tags, uid = null) {
+  let sql = 'UPDATE docs SET tags=$1 WHERE id IN ' + this.insql(idlist);
+  let a = [tags];
+  if (uid) {
+    sql += ' AND adminid=$2';
+    a.push(uid);
+  }
+  let ret = await this.db.query(sql, a);
+  return ret.rowCount;
+};
+
 docs.prototype.setHidden = async function (idlist, stat = 1, uid = null) {
-  let sql = 'UPDATE set is_hidden=$1 WHERE id IN ';
+  let sql = 'UPDATE docs set is_hidden=$1 WHERE id IN ';
   let idsql = this.insql(idlist);
   sql += idsql;
   let a = [stat];

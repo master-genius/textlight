@@ -28,11 +28,11 @@ class page {
     let gjs = '';
     let gcss = '';
     try {
-      gjs = fs.readFileSync(`${this.path}/global.js`, {encoding:'utf8'});
+      gjs = this.fs.readFileSync(`${this.path}/global.js`, {encoding:'utf8'});
     } catch(err){}
 
     try {
-      gcss = fs.readFileSync(`${this.path}/global.css`, {encoding:'utf8'});
+      gcss = this.fs.readFileSync(`${this.path}/global.css`, {encoding:'utf8'});
     } catch (err){}
     this.pi.globalcss = gcss;
     this.pi.globaljs = gjs;
@@ -56,6 +56,7 @@ class page {
     for (let i=0; i<pages.length; i++) {
       this.initpage(this.path+'/pages', pages[i]);
     }
+    this.page40x();
   }
 
   fmtpage (p) {
@@ -64,7 +65,7 @@ class page {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,height=device-height">
         <title>${this.si.title}</title>
-        <link href="/static/css/pure-min.css" rel="stylesheet">
+        <link href="/theme/css/mini-default.min.css" rel="stylesheet">
         ${p.header}
         <style>
           ${p.globalcss}
@@ -76,29 +77,37 @@ class page {
         </script>
       </head>
       <body>
-        <div class="pure-g">
-          <div class="pure-u-1-12"></div>
-          <div class="pure-u-9-12">
-            <div class="pure-menu pure-menu-horizontal">
-              <a href="/" class="pure-menu-heading pure-menu-link">首页</a>
-              <ul class="pure-menu-list">
-                <li class="pure-menu-item">
-                  <a href="/p/about" class="pure-menu-link">关于</a>
-                </li>
-              </ul>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-1 col-md-1 col-lg-2"></div>
+            <div class="col-sm-10 col-md-10 col-lg-8">
+              <header id="menu">
+                <a href="/" class="button">首页</a>
+              </header>
             </div>
+            <div class="col-sm-1 col-md-1 col-lg-2"></div>
           </div>
-          <div class="pure-u-5-12"></div>
         </div>
         
-        <div class="pure-g" id="main">
-            <div class="pure-u-1">
+        <div class="container" id="__main__" style="margin-top:0.5rem;">
+          <div class="row">
+            <div class="col-sm-1 col-md-1 col-lg-2"></div>
+            <div class="col-sm-10 col-md-10 col-lg-8">
               ${p.main}
             </div>
+            <div class="col-sm-1 col-md-1 col-lg-2"></div>
+          </div>
         </div>
 
-        <div class="pure-g">
-          ${p.footer}
+        <div class="container">
+          ${this.si.footer}
+        </div>
+        <div class="container" style="text-align:center;padding:0.5rem;">
+          <div class="col-sm-1 col-md-1 col-lg-2"></div>
+          <div class="col-sm-10 col-md-10 col-lg-8">
+            <span style="font-size:86%;">${this.si.copyright}</span>
+          </div>
+          <div class="col-sm-1 col-md-1 col-lg-2"></div>
         </div>
         <div id="sys-notify"></div>
         <div id="sys-cover"></div>
@@ -108,7 +117,7 @@ class page {
         </script>
         <script>
           function setMainSize() {
-            let d = document.getElementById('main');
+            let d = document.getElementById('__main__');
             if (d) {
               d.style.minHeight = document.documentElement.clientHeight * 0.85 + 'px';
             }
@@ -153,14 +162,14 @@ class page {
 
     try {
       this.fs.accessSync(cssfile, this.fs.constants.F_OK);
-      this.pi.css = fs.readFileSync(cssfile, {encoding:'utf8'});
+      this.pi.css = this.fs.readFileSync(cssfile, {encoding:'utf8'});
     } catch (err) {
       //console.log(err);
     }
 
     try {
       this.fs.accessSync(jsfile, this.fs.constants.F_OK);
-      this.pi.js = fs.readFileSync(jsfile, {encoding:'utf8'});
+      this.pi.js = this.fs.readFileSync(jsfile, {encoding:'utf8'});
     } catch (err) {
       //console.log(err);
     }
@@ -201,7 +210,7 @@ class page {
             <div class="cell small-1 medium-3 large-4"></div>
             <div class="cell small-10 medium-6 large-4">
               <h3>404 : 没有此页面，请点击回到首页</h3>
-              <a href="/adminpage/home">首页</a>
+              <a href="/">首页</a>
             </div>
             <div class="cell small-1 medium-3 large-4"></div>
           </div>

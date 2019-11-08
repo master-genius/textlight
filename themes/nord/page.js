@@ -162,7 +162,7 @@ class page {
 
     try {
       this.fs.accessSync(cssfile, this.fs.constants.F_OK);
-      this.pi.css = fs.readFileSync(cssfile, {encoding:'utf8'});
+      this.pi.css = this.fs.readFileSync(cssfile, {encoding:'utf8'});
     } catch (err) {
       //console.log(err);
     }

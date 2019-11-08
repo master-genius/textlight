@@ -457,3 +457,112 @@ function previewDoc(id) {
     sysnotify(err.message, 'err');
   });
 }
+
+function setPublicStat(st) {
+  let ispb = (st === 'on' ? 1 : 0);
+  let idlist = [];
+  let nds = document.querySelectorAll('.doc-list-cell');
+  for(let i=0; i<nds.length;i++) {
+    if (nds[i].checked) {
+      idlist.push(nds[i].value);
+    }
+  }
+  if (idlist.length == 0) {
+    return ;
+  }
+
+  let postdata = {
+    idlist : idlist,
+    is_public : ispb
+  }
+
+  return userApiCall('/contentpub', {
+    method: 'PUT',
+    mode : 'cors',
+    headers : {
+      'content-type' : 'text/plain'
+    },
+    body : JSON.stringify(postdata)
+  }).then(d => {
+    if (d.status === 'OK') {
+      docList();
+    } else {
+      sysnotify(d.errmsg, 'err');
+    }
+  })
+  .catch (err => {
+    sysnotify(err.message, 'err');
+  });
+}
+
+var _tagidlist = [];
+var _tagtmp = '';
+function showSetSelectTag () {
+  let idlist = [];
+  let nds = document.querySelectorAll('.doc-list-cell');
+  for(let i=0; i<nds.length;i++) {
+    if (nds[i].checked) {
+      idlist.push(nds[i].value);
+    }
+  }
+  if (idlist.length == 0) {
+    return ;
+  }
+  _tagidlist = idlist;
+  var html = `
+  <div class="grid-x">
+    <div class="cell small-9 medium-8 large-8"></div>
+    <div class="cell small-3 medium-4 large-4" style="text-align:center;">
+      <a href="javascript:unsyscover();"><h3>X</h3></a>
+    </div>
+  </div>
+  <div class="grid-x">
+    <div class="cell hide-for-small-only medium-2 large-3"></div>
+    <div class="cell small-12 medium-8 large-6" style="padding:0.6rem;">
+      <form onsubmit="return false;">
+        <input type="text" value="" placeholder="多个标签用 , 分开" oninput="cacheSetTag(this);">
+        <input type="submit" class="button warning" value="设置" onclick="setSelectTag(this);">
+      </form>
+    </div>
+  </div>`;
+  syscover(html);
+}
+
+function cacheSetTag(t) {
+  _tagtmp = t.value.trim();
+}
+
+function setSelectTag(t) {
+  if (_tagidlist.length == 0) {
+    return ;
+  }
+  let pd = {
+    idlist : _tagidlist,
+    tag : _tagtmp
+  }
+  t.disabled = true;
+  return userApiCall('/settags', {
+    method : 'PUT',
+    headers : {
+      'content-type' : 'text/plain'
+    },
+    body : JSON.stringify(pd)
+  })
+  .then(d => {
+    if (d.status === 'OK') {
+      docList();
+      unsyscover();
+    } else {
+      sysnotify(d.errmsg, 'err');
+    }
+  })
+  .catch (err => {
+
+  }).finally(() =>{
+    if (t) {
+      t.disabled = false;
+    }
+    _tagtmp = '';
+    _tagidlist = [];
+  });
+}
