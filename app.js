@@ -55,7 +55,7 @@ if (cluster.isWorker) {
   try {
     fs.accessSync('./self/config.js', fs.constants.F_OK);
     var scfg = require('./self/config');
-    if (cfg.usePassCallback && typeof scfg.passCallback === 'function') {
+    if (scfg.usePassCallback && typeof scfg.passCallback === 'function') {
       app.service.usePassCallback = scfg.usePassCallback;
       app.service.passCallback = scfg.passCallback;
       app.service.permsource = scfg.permsource;
