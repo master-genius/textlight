@@ -8,16 +8,19 @@ var pgdb = new pg.Pool(dbcfg);
 var adm = new admin(pgdb);
 
 /**
- * 用户角色分为：root、editer、inspector、super
- * editer可以编辑并管理内容，但是不能删除或更改其他editer的内容
- * inspector是审核员，可以设置某些内容是否可见。
- * super是inspector和editor的结合。
+ * 用户角色分为：root、editer、super
+ * editer可以编辑并管理内容，但是不能删除或更改其他editer的数据。
+ * super除了不可以管理用户之外，都可以操作。
  */
+
+let salt = funcs.makeSalt();
+let pass = funcs.makeSalt(7);
 
 ;(async () => {
   let r = adm.create({
     username : 'root',
-    passwd : 'wy1001!',
+    passwd : pass,
+    salt : salt,
     email : 'aa@12.com',
     role : 'root'
   });
@@ -25,4 +28,5 @@ var adm = new admin(pgdb);
   if (r) {
     console.log(r);
   }
+  console.log(`最高级用户：root, 初始密码：${pass}。请登录管理后台重新设置密码。`);
 })();
