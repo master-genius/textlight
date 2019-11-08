@@ -83,7 +83,7 @@ function showEditDoc(nd = null) {
           <div id="editor-zone">
             <div id="editor-menu" class="editor-menu" style="margin-bottom: 0.5rem;border-left:solid 0.06rem #696969;background:#efedf5;"></div>
 
-            <div id="editor-block" class="editor-block" style="height:30rem;width:100%;border-left:solid 0.06rem #696969;border-bottom:dashed 0.06rem #696969;" spellcheck="false" onkeydown="return mdKeyDown(this, event);" onkeyup="return mdKeyUp(this, event);"></div>
+            <div id="editor-block" class="editor-block" style="height:30rem;width:100%;border-left:solid 0.06rem #696969;border-bottom:dashed 0.06rem #696969;" spellcheck="false"></div>
           </div>
         </div>
         <div class="grid-x" style="padding:0.5rem;line-height:2.5rem;">
@@ -333,7 +333,7 @@ window.onload = async function () {
   docList();
 };
 
-var _ctrl_start = false;
+/* var _ctrl_start = false;
     
 function mdKeyDown(t, event) {
   if (event.key == 'Tab') {
@@ -366,7 +366,7 @@ function mdKeyUp(t, event) {
     _ctrl_start = false;
   }
 }
-
+ */
 function selectAllDoc(t) {
   let stat = t.checked;
   let nds = document.querySelectorAll('.doc-list-cell');

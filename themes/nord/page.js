@@ -190,34 +190,34 @@ class page {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,height=device-height">
         <title>${p.title}</title>
-        <link href="https://cdn.bootcss.com/foundation/6.5.3/css/foundation.min.css" rel="stylesheet">
+        <link href="/theme/css/mini-nord.min.css" rel="stylesheet">
         ${p.header}
         <style>
           ${p.globalcss}
         </style>
       </head>
       <body>
-        <div class="full-container">
-          <div class="grid-x">
-            <div class="cell small-12" style="padding:0.4rem;line-height:2.2rem;text-align:center;background:#f2f1f9;">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12" style="padding:0.4rem;line-height:2.2rem;text-align:center;">
               ${p.sitename}
             </div>
           </div>
         </div>
 
-        <div class="full-container" id="main">
-          <div class="grid-x">
-            <div class="cell small-1 medium-3 large-4"></div>
-            <div class="cell small-10 medium-6 large-4">
+        <div class="container" id="main">
+          <div class="row">
+            <div class="col-md-2 col-lg-3"></div>
+            <div class="col-sm-12 col-md-8 col-lg-6" style="padding:0.6rem;">
               <h3>404 : 没有此页面，请点击回到首页</h3>
               <a href="/">首页</a>
             </div>
-            <div class="cell small-1 medium-3 large-4"></div>
+            <div class="col-md-2 col-lg-3"></div>
           </div>
         </div>
 
-        <div class="full-container">
-          ${p.footer}
+        <div class="container">
+          ${this.si.footer}
         </div>
         <div id="sys-notify"></div>
         <script>
