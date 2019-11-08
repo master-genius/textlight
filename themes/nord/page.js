@@ -98,7 +98,7 @@ class page {
             <div class="col-sm-1 col-md-1 col-lg-2"></div>
           </div>
         </div>
-
+        <br>
         <div class="container">
           ${this.si.footer}
         </div>
@@ -109,6 +109,7 @@ class page {
           </div>
           <div class="col-sm-1 col-md-1 col-lg-2"></div>
         </div>
+        <br>
         <div id="sys-notify"></div>
         <div id="sys-cover"></div>
         <div id="sys-loading"></div>
