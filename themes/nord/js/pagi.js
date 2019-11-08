@@ -1,17 +1,19 @@
 var _pagi = {};
 _pagi.pageTemp = function (id = null) {
     var temp = `
-        <div class="row" style="text-align:center;line-height:2.5rem;width:100%;">
-            <div class="col-sm-4 col-md-4 col-lg-4" id="com-prev-page" style="border-right:solid 0.05rem #c5c5c5;border-top:solid 0.05rem #c5c5c5;">
-                <span>&lt;&lt;</span>
+        <div class="row" style="text-align:center;line-height:2.8rem;width:100%;">
+            <div class="col-sm-4 col-md-4 col-lg-4" id="com-prev-page">
+                <span class="shadowed button">&lt;&lt;</span>
             </div>
 
-            <div class="col-sm-4 col-md-4 col-lg-4" title="点击跳转页" id="com-jump-page" style="padding-left:0.2rem;padding-right:0.2rem;background:#e3e2ef;">
-                <span id="com-cur-page">1</span>/<span id="com-total-page">1</span>
+            <div class="col-sm-4 col-md-4 col-lg-4" title="点击跳转页" id="com-jump-page">
+              <span class="shadowed button">
+              <span id="com-cur-page">1</span>/<span id="com-total-page">1</span>
+              </span>
             </div>
 
-            <div class="col-sm-4 col-md-4 col-lg-4" id="com-next-page" style="border-left:solid 0.05rem #c5c5c5;border-bottom:solid 0.05rem #c5c5c5;">
-                <span>&gt;&gt;</span>
+            <div class="col-sm-4 col-md-4 col-lg-4" id="com-next-page">
+                <span class="shadowed button">&gt;&gt;</span>
             </div>
         </div>
     `;

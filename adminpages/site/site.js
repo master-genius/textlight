@@ -71,7 +71,8 @@ function showEditSiteInfo() {
     <input type="text" value="${_siteinfo.title}" oninput="cacheInput(this, 'title');">
     
     <label>版权信息</label>
-    <input type="text" value="${_siteinfo.copyright}" oninput="cacheInput(this, 'copyright');">
+    <textarea oninput="cacheInput(this, 'copyright');" style="width:100%;height:6rem;">${_siteinfo.copyright}</textarea>
+
     <label>页面底部</label>
     <textarea oninput="cacheInput(this, 'footer');" style="width:100%;height:10rem;">${_siteinfo.footer}</textarea>
     

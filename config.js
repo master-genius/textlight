@@ -11,4 +11,7 @@ module.exports = {
     '127.0.0.1'
   ],
   cors : [],
+
+  //会话有效期，秒
+  expires : 18000
 };

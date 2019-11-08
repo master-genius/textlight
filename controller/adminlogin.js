@@ -22,7 +22,7 @@ class adminlogin {
      * 会导致cluster模式，并不一定是都是同一个进程处理请求，
      * 比如有4个进程运行，则可能最高可以允许24次尝试。
     */
-    if (u.failed >= 6) {
+    if (u.failed >= 5) {
       return [false, '登录失败次数过多，请10分钟之后再试'];
     }
     return true;
@@ -79,7 +79,7 @@ class adminlogin {
       return ;
     }
 
-    let expires = 7200000; //60minutes
+    let expires = c.service.expires;
     let userinfo = {
         id        : u.id,
         username  : u.username,

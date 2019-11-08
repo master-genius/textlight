@@ -1,6 +1,6 @@
 /**
  * TextLight 内容发布系统，保持开源和简洁。发布于GPL协议。
- * 由雄安道简网络科技开发出版。
+ * 由雄安道简网络科技开发(https://www.w3xm.cn)。
  */
 'use strict';
 
@@ -48,8 +48,11 @@ if (cluster.isWorker) {
   app.service.funcs = funcs;
 
   app.service.siteimgpath = __dirname + '/images';
+  app.service.sitedata = __dirname + '/sitedata';
   app.service.alog = {};
   app.service.cors = cfg.cors;
+  app.service.expires = cfg.expires * 1000;
+
   app.service.usePassCallback = false;
   app.service.permsource = '';
   try {

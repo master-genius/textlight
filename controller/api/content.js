@@ -13,6 +13,7 @@ class content {
   }
 
   async list (c) {
+    c.setHeader('Cache-control', 'public,max-age=300');
     c.query.isdel = 0;
     let data = await c.service.docs.doclist(c.query);
     c.res.body = c.service.api.ret(0, data);

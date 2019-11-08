@@ -22,6 +22,10 @@ function renderContent(d) {
   let dm = document.getElementById('content');
   if (dm) {
     dm.innerHTML = html;
+    let ads = dm.querySelectorAll('a');
+    for(let i=0;i<ads.length;i++) {
+      ads[i].target="_blank";
+    }
   }
 }
 

@@ -1,9 +1,17 @@
 <div class="container" style="padding:0.5rem;">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-8"></div>
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <form onsubmit="return false;">
+        <input type="text" id="search-kwd" placeholder="关键词，使用@[tag]搜索标签" onchange="searchDoc(this);">
+      </form>
+    </div>
+  </div>
   <div class="row" id="doc-list">
     <!-- <div class="col-sm-12 col-md-12 col-lg-12" id="doc-list"></div> -->
   </div>
   <div class="row">
-    <div class="col-md-2 col-lg-3"></div>
+    <div class="col-md-2 col-lg-1"></div>
     <div class="col-sm-12 col-md-8 col-lg-6" id="pagination"></div>
     <div class="col-md-2 col-lg-3"></div>
   </div>

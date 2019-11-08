@@ -34,11 +34,6 @@ docs.prototype.parseCond = function (args) {
     if (offset < 0) {offset = 0;}
   }
 
-  /* let gid = null;
-  if (args.gid !== undefined && !isNaN(args.gid)) {
-    gid = args.gid;
-  } */
-
   let tag = null;
   if (args.tag !== undefined) {
     tag = args.tag.trim().replace(/[\;\+\-]+/ig, '');
@@ -58,7 +53,7 @@ docs.prototype.parseCond = function (args) {
     if (kwd !== null) {
       condsql += ` AND `;
     }
-    condsql += ` gid ILIKE '%${tag}%' `;
+    condsql += ` tags ILIKE '%${tag}%' `;
   }
 
   if (isdel !== null) {
@@ -110,6 +105,17 @@ docs.prototype.count = async function (args = {}) {
   }
   return r.rows[0].total;
 };
+
+docs.prototype.ucount = async function (args = {}) {
+  let sql = 'SELECT count(*) as total FROM docs ';
+  sql  += this.parseCond(args).cond + ' AND is_public=1 AND is_hidden=0';
+
+  let r = await this.db.query(sql);
+  if (r.rowCount <= 0) {
+    return 0;
+  }
+  return r.rows[0].total;
+}
 
 docs.prototype.doclist = async function (args = {}) {
   

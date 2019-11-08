@@ -36,38 +36,6 @@ var wo = new function() {
 
 };
 
-function formatTime(fmtstr = '', tim = null) {
-  var tm = (tim===null) ? new Date() : new Date(tim);
-
-  fstr = fmtstr.toLowerCase();
-  var join_char = '-';
-  if (fstr.indexOf('.') >= 0) {
-      join_char = '.';
-  }
-
-  var default_time = `${tm.getFullYear()}${join_char}${tm.getMonth()+1}${join_char}${tm.getDate()}`;
-
-  switch (fstr) {
-    case 'y-m-d':
-    case 'y.m.d':
-      return default_time;
-
-    case 'y-m-d-h':
-    case 'y.m.d.h':
-      return `${default_time}${join_char}${tm.getHours()}`;
-
-    case 'y-m-d h:m:s':
-      return `${default_time} ${tm.getHours()}:${tm.getMinutes()}:${tm.getSeconds()}`;
-    
-    case 'y-m-d-h_m_s':
-      return `${default_time}-${tm.getHours()}_${tm.getMinutes()}_${tm.getSeconds()}`;
-
-    default:
-      return default_time;
-  }
-
-}
-
 async function apiCall (path, options = {}) {
   return fetch (path, options)
         .then(res => {
@@ -162,32 +130,19 @@ var _dm = new function () {
       }
     }
   };
-  this.loadingInterVal = null;
-  this.loadingText = [
-    '&nbsp;&nbsp; . &nbsp;&nbsp;&nbsp; . &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.',
-    '&nbsp;&nbsp;&nbsp;&nbsp; . &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .',
-    '&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .',
-    '.&nbsp;&nbsp;.'
-  ];
+
+  this.loadingText = '<div class="spinner"></div>';
   this.loading = function () {
     let d = document.getElementById('sys-loading');
     if (!d) {return ;}
-    d.style.cssText = 'z-index:1000;position:fixed;top:18%;width:50%;left:45%;font-weight:bold;text-shadow:0.2rem 0.2rem #e9e9e9;';
-    d.innerHTML = '. . .';
-    var ind = 0;
-    self.loadingInterVal = setInterval(() => {
-      ind += 1;
-      if (ind >= self.loadingText.length) {
-        ind = 0;
-      }
-      d.innerHTML = self.loadingText[ind];
-    }, 350);
+
+    d.style.cssText = 'z-index:1000;position:fixed;top:18%;width:10%;left:45%;';
+    d.innerHTML = self.loadingText;
   };
   
   this.unloading = function () {
     let d = document.getElementById('sys-loading');
     if (!d) {return ;}
-    clearInterval(self.loadingInterVal);
     d.innerHTML = '';
     d.style.cssText = '';
   };
@@ -234,3 +189,10 @@ window.onpageshow = function () {
     }
   });
 };
+
+function totalPage (t, p) {
+  if (p == 0) {
+    return 0;
+  }
+  return (t % p == 0) ? t/p : parseInt(t/p) + 1;
+}

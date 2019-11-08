@@ -100,7 +100,14 @@ class page {
         </div>
 
         <div class="container">
-          ${p.footer}
+          ${this.si.footer}
+        </div>
+        <div class="container" style="text-align:center;padding:0.5rem;">
+          <div class="col-sm-1 col-md-1 col-lg-2"></div>
+          <div class="col-sm-10 col-md-10 col-lg-8">
+            <span style="font-size:86%;">${this.si.copyright}</span>
+          </div>
+          <div class="col-sm-1 col-md-1 col-lg-2"></div>
         </div>
         <div id="sys-notify"></div>
         <div id="sys-cover"></div>

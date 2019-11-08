@@ -28,43 +28,6 @@ class image {
       '.png' : 'image/png',
       '.gif' : 'image/gif'
     };
-
-    this.loaded = false;
-    this.imageList = {};
-  }
-
-  loadimgdir (imgdir, cell) {
-    let flist = fs.readdirSync(imgdir, {withFileTypes:true});
-    for (let i=0; i<flist.length;i++) {
-      if (flist[i].isFile() && 
-        this.typemap[flist[i].name.substring(0,2)] !== undefined
-      ) {
-        cell.push(flist[i].name);
-      }
-    }
-  }
-
-  loadImages (c, all = false) {
-    try {
-      let cell = [];
-      let imgdir = `${c.service.imagepath}`;
-      if (all === false) {
-        imgdir += `/${c.box.user.id.substring(0,8)}`;
-        this.loadimgdir(imgdir, cell);
-        return cell;
-      }
-
-      let dlist = fs.readFileSync(imgdir, {withFileTypes:true});
-      for(let i=0; i<dlist.length; i++) {
-        if (!dlist[i].isDirectory()) {
-          continue;
-        }
-        this.loadimgdir(`${c.service.imagepath}/${dlist[i].name}`, cell);
-      }
-      return cell;
-    } catch (err) {
-      return [];
-    }
   }
 
   async get (c) {
@@ -94,12 +57,13 @@ class image {
 
   }
 
-  async list (c) {
-    if (c.box.user.role === 'root') {
-      c.res.body = this.loadImages(c, true);
-    } else {
-      c.res.body = this.loadImages(c);
-    }
+  __mid () {
+    return [
+      {
+        name : 'cors',
+        path : ['get']
+      }
+    ]
   }
 
 }
