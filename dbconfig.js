@@ -1,9 +1,9 @@
 module.exports = {
     host : 'localhost',
     port : 5432,
-    user : 'daocms',
-    database : 'daocms',
-    password : 'dao2019',
+    user : 'textlight',
+    database : 'textlight',
+    password : 'text2019',
     max: 8,
     // all valid client config options are also valid here
     // in addition here are the pool specific configuration parameters:

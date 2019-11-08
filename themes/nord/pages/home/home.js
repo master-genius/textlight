@@ -5,7 +5,12 @@ function getDoc(id) {
 }
 
 function fmtDoc(d) {
-  return `<div>${d.title}</div>`;
+  return `<div class="card"><a href="/page/show?id=${d.id}" target="_blank">
+    <h3>${d.title.trim()}</h3>
+    <p style="color:#676869;">
+     ${d.updatetime.substring(0,16).replace('T', ' ')}
+    </p>
+  </a></div>`;
 }
 
 function docList () {
