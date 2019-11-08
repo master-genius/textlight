@@ -1,0 +1,34 @@
+
+<form onsubmit="return false;" autocomplete="off">
+  <div class="grid-x" style="padding:0.5rem;">
+    <div class="cell small-12 medium-6 large-4">
+      <label>管理员用户名</label>
+      <input type="text" id="new-username" placeholder="管理员用户名" required>
+    </div>
+    <div class="cell small-12 medium-6 large-4">
+      <label>密码</label>
+      <input type="text" id="new-passwd" placeholder="密码" required>
+    </div>
+    <div class="cell small-12 medium-6 large-4">
+      <label>邮箱</label>
+      <input type="text" id="new-email" placeholder="邮箱" required>
+    </div>
+    <div class="cell small-12 medium-6 large-4">
+      <label>角色</label>
+      <select id="new-admin-role">
+        <option value="editor">编辑</option>
+        <option value="super">管理员</option>
+      </select>
+    </div>
+    <div class="cell small-12 medium-6 large-4">
+      <label>&nbsp;</label>
+      &nbsp;<input type="submit" class="button primary" onclick="createAdmin(this);" value="创建">&nbsp;&nbsp;
+      
+      <!-- <button class="button alert" onclick="clearCreateAdmin();">取消</button> -->
+    </div>
+  </div>
+</form>
+
+<div class="grid-x" style="padding:0.6rem;" id="admin-list">
+  
+</div>

@@ -1,0 +1,23 @@
+body {
+    width: 100%;
+    word-break: break-all;
+    word-wrap:break-word;
+}
+
+.top-menu {
+    line-height: 4.2rem;
+    margin-bottom: 0.5rem;
+    background-color: #f2f1f7;
+    font-size: 96%;
+}
+
+a {
+    color: #424254;
+    font-size: 95%;
+}
+
+.flow-x-bar {
+    overflow-x: auto;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+}

@@ -1,0 +1,11 @@
+.doc-list {
+    line-height:2rem;
+    padding: 0.3rem;
+    border-radius: 0.1rem;
+    margin-bottom: 0.6rem;
+}
+
+.doc-list-content {
+    padding: 0.3rem;
+    background-color: #e9e8ef;
+}

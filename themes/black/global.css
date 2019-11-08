@@ -1,0 +1,23 @@
+.menu {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: inline-block;
+  white-space: nowrap;
+  list-style: none;
+}
+
+.menu li {
+  display: inline-block;
+  white-space: nowrap;
+  text-decoration: none;
+  padding: 0.6rem 0.8rem;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #7a7a95;
+}
+
+a {
+  color: #4a4a4f;
+}

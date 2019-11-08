@@ -1,0 +1,41 @@
+<div class="grid-x" style="padding:0.6rem;">
+  <div class="cell small-2 medium-2 large-1" style="text-align:center;">
+    <button class="button hollow small" onclick="neDoc();">新建</button>
+  </div>
+  <div class="cell small-9 medium-10 large-11" style="text-align:center;padding-left:0.15rem;line-height: 2.2rem;">
+    <input type="checkbox" onchange="selectAllDoc(this);">全选&nbsp;&nbsp;&nbsp;
+    <a href="javascript:softDeleteSelect();" style="color:#562312;">删除</a>
+    &nbsp;&nbsp;
+    <a href="javascript:setSelectTag();">设置标签</a>
+  </div>
+</div>
+
+<div class="grid-x" style="padding:0.6rem;">
+  <div class="cell small-4 medium-3 large-2" style="text-align:center;">
+    <select id="c-type-select" onchange="ctypeSearch(this);">
+      <option value="--all--">所有</option>
+      <option value="news">文档</option>
+      <option value="company">页面</option>
+    </select>
+  </div>
+  <div class="cell small-6 medium-5 large-4" style="text-align:center;padding-left:0.15rem;line-height: 2.2rem;">
+    <form onsubmit="return false;">
+    <div class="input-group">
+      <a href="javascript:clearSearch();" class="input-group-label">X</a>
+      <input type="text" value="" id="doc-kwd" class="input-group-field" placeholder="搜索关键字">
+      <div class="input-group-button">
+        <input type="submit" class="button warning" value="Q" onclick="searchList();">
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
+
+<div class="grid-x" style="padding:0.5rem;" id="doc-list"></div>
+<div class="grid-x" style="padding:1rem;">
+  <div class="cell medium-3 large-4 hide-for-small-only"></div>
+  <div class="cell medium-6 large-4" id="pagination"></div>
+  <div class="cell medium-3 large-4 hide-for-small-only"></div>
+</div>
+<script src="/static/js/wangeditor.min.js"></script>
+<script src="/static/js/comps/pagination.js"></script>
