@@ -194,10 +194,17 @@ if (cluster.isWorker) {
   }, '@page-static');
 
   app.router.get('/theme/*', async c => {
+    let encoding = 'utf8';
     if (c.param.starPath.indexOf('.css') > 0) {
         c.setHeader('content-type', 'text/css; charset=utf-8');
     } else if (c.param.starPath.indexOf('.js') > 0) {
-        c.setHeader('content-type', 'text/javascript; charset=utf-8');
+      c.setHeader('content-type', 'text/javascript; charset=utf-8');
+    } else if (c.param.starPath.indexOf('.jpg') > 0) {
+      encoding = 'binary';
+      c.setHeader('content-type', 'image/jpeg');
+    } else if (c.param.starPath.indexOf('.png') > 0) {
+      encoding = 'binary';
+      c.setHeader('content-type', 'image/png');
     }
     if (_themeStaticCache[c.param.starPath] !== undefined) {
       c.setHeader('cache-control', 'public,max-age=86400');
@@ -206,11 +213,13 @@ if (cluster.isWorker) {
     }
     try {
       c.setHeader('cache-control', 'public,max-age=86400');
+      c.res.encoding = encoding;
       c.res.body = await funcs.readFile(
-          `./themes/${c.service.siteinfo.info.theme}/${c.param.starPath}`);
+          `./themes/${c.service.siteinfo.info.theme}/${c.param.starPath}`, encoding);
       _themeStaticCache[c.param.starPath] = c.res.body;
     } catch (err) {
-        c.status(404);
+      console.log(err);
+      c.status(404);
     }
   }, '@page-static');
 

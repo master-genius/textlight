@@ -29,6 +29,8 @@ module.exports = async (c, next) => {
       c.res.body = c.service.api.ret('EUDEF', '内容不能为空');
       return ;
     }
+    c.body.title = c.body.title.replace(/\</ig, '&lt;');
+    c.body.title = c.body.title.replace(/\>/ig, '&gt;');
   }
 
   await next(c);

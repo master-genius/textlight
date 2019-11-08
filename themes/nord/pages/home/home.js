@@ -82,7 +82,9 @@ async function listenOrSearch(t) {
     setTimeout(() => {
       _inputOutTime = 0;
       wo.set('doc-home-kwd', t.value.trim());
-      //t.onchange(t);
+      if (t.value === '') {
+        document.getElementById('clear-search-btn').className = 'hidden';
+      }
       searchDoc(t);
     }, 666);
     return ;
@@ -114,3 +116,24 @@ window.onload = async function() {
     document.getElementById('sitename').cite = location.host;
   }
 };
+
+function showClear(t) {
+  if (t.value.trim() === '') {
+    document.getElementById('clear-search-btn').className = 'hidden';
+    return ;
+  }
+  document.getElementById('clear-search-btn').className = '';
+}
+
+function hideClear(t) {
+  setTimeout(() => {
+    document.getElementById('clear-search-btn').className = 'hidden';
+  }, 450);
+}
+
+function clearSearch() {
+  document.getElementById('clear-search-btn').className = 'hidden';
+  let d = document.getElementById('search-kwd');
+  d.value = '';
+  searchDoc(d);
+}
