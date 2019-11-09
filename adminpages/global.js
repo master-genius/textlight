@@ -340,7 +340,7 @@ window.onpageshow = function () {
     let nd = document.querySelectorAll('.admin-menu');
     for(let i=0; i<nd.length; i++) {
       if (location.href.indexOf(nd[i].href) >= 0) {
-        nd[i].style.cssText = 'background-color:#cdc9d9;font-weight:bold;';
+        nd[i].style.cssText = 'background-color:#c2c9d2;font-weight:bold;';
       } else {
         nd[i].style.cssText = '';
       }

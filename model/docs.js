@@ -124,7 +124,7 @@ docs.prototype.doclist = async function (args = {}) {
   let sql = 'SELECT id,title,keywords,addtime,updatetime,doctype,ctype FROM docs ';
 
   sql += r.cond + ' AND is_public=1 AND is_hidden=0 ' 
-      + ' ORDER BY updatetime DESC ' + r.limit;
+      + ' ORDER BY is_top DESC,updatetime DESC ' + r.limit;
 
   let ret = await this.db.query(sql);
 
@@ -243,13 +243,13 @@ docs.prototype.removeAll = async function (idlist, uid=null, soft = true) {
   if (uid) {
     sql += ' AND adminid=' + uid;
   }
-  console.log(sql);
+
   let ret = await this.db.query(sql);
   return ret.rowCount;
 };
 
 docs.prototype.update = async function (data, uid = null) {
-  let sql = 'UPDATE docs SET title=$1,content=$2,keywords=$3,tags=$4,is_public=$5,updatetime=$6 WHERE id=$7';
+  let sql = 'UPDATE docs SET title=$1,content=$2,keywords=$3,tags=$4,is_public=$5,updatetime=$6, version=version+1 WHERE id=$7';
   let a = [
     data.title, data.content, data.keywords,data.tags,
     data.is_public, funcs.formatTime(null, 'middle'), data.id
@@ -299,6 +299,19 @@ docs.prototype.setHidden = async function (idlist, stat = 1, uid = null) {
   let idsql = this.insql(idlist);
   sql += idsql;
   let a = [stat];
+  if (uid) {
+    sql += ' AND adminid=$2';
+    a.push(uid);
+  }
+  let ret = await this.db.query(sql, a);
+  return ret.rowCount;
+};
+
+docs.prototype.setTop = async function (idlist, top = 1, uid = null) {
+  let sql = 'UPDATE docs set is_top=$1 WHERE id IN ';
+  let idsql = this.insql(idlist);
+  sql += idsql;
+  let a = [top];
   if (uid) {
     sql += ' AND adminid=$2';
     a.push(uid);

@@ -264,10 +264,10 @@ function docTemp (d) {
     <div class="doc-list-content">
     <p><a href="javascript:neDoc('${d.id}');"><img src="/siteimage/edit.png" style="width:auto;height:auto;">
     <span style="font-size:105%;">${d.title}</span></a></p>
-    <div>状态：${d.is_public ? '已发布' : '未发布'}</div>
+    <div>状态：${d.is_public ? '已发布' : '未发布'}${d.is_top ? ', 置顶' : ''}</div>
     <div>作者：${d.adminname}</div>
     <div>${d.updatetime.substring(0,10)}</div>
-    <input type="checkbox" value="${d.id}" class="doc-list-cell">
+    <input type="checkbox" value="${d.id}" class="doc-list-cell" style="zoom:125%;">
     <div style="text-align:right;">
       <a href="javascript:previewDoc('${d.id}');" style="font-size:86%;color:#454648;">查看</a>
     </div>
@@ -564,5 +564,42 @@ function setSelectTag(t) {
     }
     _tagtmp = '';
     _tagidlist = [];
+  });
+}
+
+function setTopStat(st) {
+  let istop = (st === 'on' ? 1 : 0);
+  let idlist = [];
+  let nds = document.querySelectorAll('.doc-list-cell');
+  for(let i=0; i<nds.length;i++) {
+    if (nds[i].checked) {
+      idlist.push(nds[i].value);
+    }
+  }
+  if (idlist.length == 0) {
+    return ;
+  }
+
+  let postdata = {
+    idlist : idlist,
+    is_top : istop
+  }
+
+  return userApiCall('/contenttop', {
+    method: 'PUT',
+    mode : 'cors',
+    headers : {
+      'content-type' : 'text/plain'
+    },
+    body : JSON.stringify(postdata)
+  }).then(d => {
+    if (d.status === 'OK') {
+      docList();
+    } else {
+      sysnotify(d.errmsg, 'err');
+    }
+  })
+  .catch (err => {
+    sysnotify(err.message, 'err');
   });
 }

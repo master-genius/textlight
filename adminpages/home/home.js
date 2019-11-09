@@ -120,8 +120,8 @@ function fmtLoadInfo (info) {
     <p>1分钟平均进程数：${info.cpu['1m']}</p>
     <p>5分钟平均进程数：${info.cpu['5m']}</p>
     <p>15分钟平均进程数：${info.cpu['15m']}</p>
-    <p style="line-height:2.4rem;background-color:#dad5df;">master进程PID：${info.masterpid}</p>
-    <p class="help-text" style="font-size:86%;">
+    <p style="line-height:2.4rem;background-color:#f2f3f5;">master进程PID：${info.masterpid}</p>
+    <p class="help-text" style="font-size:86%;color:#696969;">
       如果要终止服务，可以连接服务器通过终端终止PID为${info.masterpid}的进程。 
     </p>
   </div>

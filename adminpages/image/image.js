@@ -19,10 +19,12 @@ function renderImageList () {
   let offset = (page-1)*_pagesize;
 
   _dm.renderList(d, _imageList.slice(offset, offset+_pagesize), (m) => {
-    return `<div class="cell small-12 medium-6 large-4" style="padding:0.5rem;">
-      <img src="${location.protocol}//${location.host}/image/${m}">
+    return `<div class="cell small-12 medium-6 large-4" style="padding:0.5rem;text-align:center;">
+      <img src="${location.protocol}//${location.host}/image/${m}" style="max-height:16rem;width:auto;">
       <pre style="overflow-x:auto;">${location.protocol}//${location.host}/image/${m}</pre>
-      <input type="checkbox" value="${m}" class="image-check-list">
+      <div style="text-align:left;">
+        <input type="checkbox" value="${m}" class="image-check-list">
+      </div>
     </div>`;
   });
   document.body.scrollTop = 0;
