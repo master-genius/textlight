@@ -252,6 +252,22 @@ if (cluster.isWorker) {
       group: 'admin-page'
     });
   }
+
+  if (cfg.useDownload) {
+    try {
+      let download = require('./middleware/download');
+      let dw = new download({
+        max : cfg.downloadMax,
+        path : cfg.downloadPath
+      });
+      app.router.get('/download/*', async c => {}, '@download');
+      app.use(dw.middleware.bind(dw), {
+        group: 'download'
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 }
 
 if (process.argv.indexOf('-d') > 0) {

@@ -13,5 +13,9 @@ module.exports = {
   cors : [],
 
   //会话有效期，秒
-  expires : 18000
+  expires : 18000,
+
+  useDownload : false,
+  downloadPath: __dirname + '/../download',
+  downloadMax: 2
 };
