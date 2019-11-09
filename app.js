@@ -1,6 +1,7 @@
 /**
  * TextLight 内容发布系统，保持开源和简洁。发布于GPL协议。
  * 由雄安道简网络科技开发(https://www.w3xm.cn)。
+ * version: 1.1.8
  */
 'use strict';
 
