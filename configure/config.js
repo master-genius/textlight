@@ -18,7 +18,7 @@ module.exports = {
   expires : 18000,
 
   //是否启用日志
-  logger : true,
+  logger : false,
   loggerRoutes : [
     '/api/content/:id',
     '/page/:name',
