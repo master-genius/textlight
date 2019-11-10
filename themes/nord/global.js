@@ -167,6 +167,7 @@ var _dm = new function () {
 
 function renderMenu (ml) {
   let d = document.getElementById('menu');
+  let dr = document.getElementById('menu-drawer');
   if (!d) {return ;}
   ml.sort((a, b) => {
     if (a.keywords == b.keywords) {
@@ -177,6 +178,9 @@ function renderMenu (ml) {
   
   _dm.renderList(d, ml, (m) => {
     return `<a href="/page/show?id=${m.id}" class="button">${m.title}</a>`;
+  }, true);
+  _dm.renderList(dr, ml, (m) => {
+    return `<a href="/page/show?id=${m.id}" class="drawer-menu-a" style="color: #424245;">${m.title}</a>`;
   }, true);
 }
 

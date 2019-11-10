@@ -81,9 +81,18 @@ class page {
           <div class="row">
             <div class="col-md-1 col-lg-2"></div>
             <div class="col-sm-12 col-md-10 col-lg-8">
-              <header id="menu">
+              <header id="menu" class="visually-hidden-sm">
                 <a href="/" class="button">首页</a>
               </header>
+              <div class="visually-hidden-md visually-hidden-lg">
+                <label for="drawer-control" class="drawer-toggle"></label>
+                <input type="checkbox" id="drawer-control" class="drawer">
+                <div id="menu-drawer">
+                  <label for="drawer-control" class="drawer-close"></label>
+                  <br>
+                  <a href="/" class="drawer-menu-a" style="color: #424245;">首页</a>
+                </div>
+              </div>
             </div>
             <div class="col-md-1 col-lg-2"></div>
           </div>

@@ -55,7 +55,11 @@ DBCFG="module.exports = {\n
 
 echo -e $DBCFG > config/dbconfig.js
 
-echo '如果要修改连接配置，可以编辑self/dbconfig.js'
+if [ ! -a "config/config.js" ] ; then
+    cp cfg-example/config-example.js config/config.js
+fi
+
+echo '如果要修改连接配置，可以编辑config/dbconfig.js'
 
 echo '创建root用户···'
 node createuser.js
