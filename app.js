@@ -30,7 +30,6 @@ var app = new titbit ({
   useLimit: true,
   maxConn : 1024,
   maxIPRequest: 500,
-  //showLoadInfo: false,
   loadInfoFile : '/tmp/loadinfo.log'
 });
 
@@ -117,7 +116,6 @@ if (cluster.isWorker) {
       });
       adminpage.init(admpagelist);
       adminpage.page40x();
-      //console.log(app.service.siteinfo.info);
       setTimeout(() => {
         app.service.theme.reload(app.service.siteinfo.info);
       }, 1000);
@@ -163,7 +161,6 @@ if (cluster.isWorker) {
         };
       }
     } catch (err) {
-      //console.log(err);
       c.res.body = '';
     }
   });
@@ -263,6 +260,19 @@ if (cluster.isWorker) {
         group: 'download'
       });
     } catch (err) {
+      console.log(err);
+    }
+  }
+
+  if (cfg.logger) {
+    try {
+      let logger = require('./middleware/log');
+      let lgg = new logger({
+        routes: cfg.loggerRoutes,
+        cache : cfg.loggerCacheCount
+      });
+      app.use(lgg.middleware.bind(lgg));
+    } catch (err){
       console.log(err);
     }
   }

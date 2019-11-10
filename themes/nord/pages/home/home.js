@@ -58,6 +58,7 @@ function docList () {
   apiCall('/api/content?type=news'+qstr).then(d => {
     _dm.renderList(document.getElementById('doc-list'), d.data, fmtDoc);
     document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }).catch(err => {
 
   });
@@ -115,6 +116,27 @@ async function getSideInfo () {
   }).catch (err => {});
 }
 
+function searchClickTag (tag) {
+  let d = document.getElementById('search-kwd');
+  d.value = `@${tag}`;
+  searchDoc(d);
+}
+
+async function getTags () {
+  return apiCall('/api/tags').then(d => {
+    if (d.status === 'OK') {
+      let td = document.getElementById('doc-tags');
+      var ht = '';
+      let tags = JSON.parse(d.data);
+      for (let i=0; i< tags.length; i++) {
+        ht += `<div class="card"><a href="javascript:searchClickTag('${tags[i]}');" style="color:#bc5920;">${tags[i]}</a></div>`;
+      }
+      td.innerHTML = ht;
+    }
+  })
+  .catch (err => { console.log(err); });
+}
+
 window.onload = async function() {
   _pagi.pageTemp('#pagination');
   _pagi.pageEvent((p) => {
@@ -131,6 +153,7 @@ window.onload = async function() {
     document.getElementById('sitename').cite = location.host;
   }
   getSideInfo();
+  getTags();
 };
 
 function showClear(t) {

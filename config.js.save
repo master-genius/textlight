@@ -18,7 +18,7 @@ module.exports = {
   //是否开启下载支持
   useDownload : false,
   //下载文件所在目录
-  downloadPath: __dirname + '/../download',
+  downloadPath: __dirname + '/../../download',
 
   //单个进程允许的最大同时下载数，cluster集群模式，开启多个进程，则每个进程都允许设置的数量。
   downloadMax: 2,
