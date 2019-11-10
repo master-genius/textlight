@@ -35,11 +35,12 @@ class logger {
 
   cacheLog (c, startTime) {
     if (this.routes !== '*' && this.routes.indexOf(c.routepath) < 0) {
+      console.log(c.routepath);
       return ;
     }
     let logtext = `${c.method} | ${c.url.href} | ${c.headers['user-agent']} | ${c.status()} | ${startTime} | ${c.ip}`;
     this.logcache.push(logtext);
-    let flag = 'a+';
+    var flag = 'a+';
     if (this.logcache.length >= this.cacheCount) {
       if (this.count >= this.max) {
         flag='w+';
@@ -48,12 +49,13 @@ class logger {
       }
       let cacheText = this.logcache.join('\n') + '\n';
       this.logcache = [];
-      var self = this;
+      var the = this;
       fs.writeFile(this.logfile, cacheText, {flag: flag}, err => {
         if (err) {
-          //console.log(err);
+          console.log(err);
         } else {
-          self.count += self.cacheCount;
+          console.log(the.count);
+          the.count += the.cacheCount;
         }
       });
     }
