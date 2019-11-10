@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ ! -d "self" ] ; then
+    mkdir self
+fi
+
 DBNAME=textlight
 DBUSER=textlight
 DBOK=
@@ -8,13 +12,13 @@ DBHOST='127.0.0.1'
 initDbSql () {
     if [ ! -f "initdb/dblock" ] ; then
         echo '正在初始化数据库···（init database···）'
-        psql -U "$DBUSER" -d "$DBNAME" < initdb/init.sql && echo 'ok' > initdb/dblock && DBOK='ok'
+        psql -U "$DBUSER" -d "$DBNAME" < initdb/init.sql && echo 'ok' > self/dblock && DBOK='ok'
     else
         echo '数据库已经初始化'
     fi
 }
 
-if [ ! -a "initdb/dblock" ] ; then
+if [ ! -a "self/dblock" ] ; then
     echo '请输入数据库用户名，默认：textlight'
     read DBUSER
     if [[ -z "$DBUSER" ]] ; then
