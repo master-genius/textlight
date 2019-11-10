@@ -86,10 +86,10 @@ class apage {
       <body>
         <div class="full-container">
           <div class="grid-x">
-          <div class="cell small-3 medium-3 large-2" style="padding:0.4rem;line-height:2.2rem;text-align:center;background:#f2f1f9;">
+          <div class="cell small-3 medium-3 large-2" style="padding:0.4rem;line-height:2.2rem;text-align:center;background:#f1f0f5;">
             <a style="font-size:121%;color:4a4a4f;" target="_blank" href="https://t.w3xm.cn"><img src="/siteimage/logo.png" style="width:28px;height:auto;">TextLight</a>
           </div>
-          <div class="cell small-9 medium-9 large-10" style="text-align:center;line-height:2.2rem;border-bottom:solid 0.06rem #eaeaef;padding:0.5rem;background:#dfdfe9;">
+          <div class="cell small-9 medium-9 large-10" style="text-align:center;line-height:2.2rem;border-bottom:solid 0.06rem #eaeaef;padding:0.5rem;background:#828387;">
             ${p.topinfo}
           </div>
           </div>

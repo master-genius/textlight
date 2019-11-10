@@ -46,7 +46,7 @@ class side {
    * @param {*} c 
    */
   async get (c) {
-    let r = await this.getWord(c.service.sitedata+'/side.md');
+    let r = await this.getWord(c.service.sitedata+'/side.html');
     c.res.body = c.service.api.ret(0, r);
   }
 
