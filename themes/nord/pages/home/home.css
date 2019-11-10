@@ -14,3 +14,10 @@ a {
   text-overflow:ellipsis;
   white-space:nowrap;
 }
+
+.goto-top {
+  background: #2e3440;
+  border-radius: 1.2rem;
+  color: #fafafa;
+  padding:0.6rem;
+}

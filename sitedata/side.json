@@ -1,0 +1,11 @@
+{
+    "table" : {
+        "word" : {
+            "url" : ""
+        },
+        "image" : {
+            "src" : "/api/siteimage/images/b.jpg",
+            "url" : "https://www.w3xm.top"
+        }
+    }
+}

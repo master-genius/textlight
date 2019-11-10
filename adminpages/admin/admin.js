@@ -86,7 +86,7 @@ function getAdminList () {
       _adminList = d.data;
       renderAdminList(d.data);
     } else {
-      sysnotify(d.errmsg);
+      sysnotify(d.errmsg, 'err');
     }
   }).finally(() => {
     _dm.unloading();

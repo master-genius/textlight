@@ -1,0 +1,41 @@
+module.exports = {
+  //32长度的字符
+  adminkey : 'xiong-an-dao-jian-wang-luo-ke-ji',
+  apidomain : 'http://localhost',
+  adminapi : '/admin',
+  port : 2022,
+  host : '0.0.0.0',
+  apikey : 'bu-xiang-shei-dou-ke-yi-diao-yong', //API调用的key,暂时没有使用,
+  //IP白名单
+  allowList: [
+    '127.0.0.1'
+  ],
+  cors : [],
+
+  //会话有效期，秒
+  expires : 18000,
+
+  //是否开启下载支持
+  useDownload : false,
+  //下载文件所在目录
+  downloadPath: __dirname + '/../download',
+
+  //单个进程允许的最大同时下载数，cluster集群模式，开启多个进程，则每个进程都允许设置的数量。
+  downloadMax: 2,
+
+  /**
+   * 是否启用高级验证加密支持。
+   * 针对高级用户，如果你是开发者，则可以设置启用自编写函数用于随机密码的验证。
+   * 这样，安全度非常高。
+   * 这时候，并非原密码没有用，而是输入密码时还要使用 // 跟上新的密码才可以登录。
+   * 如何使用，则交给开发者决定。
+   */
+  usePassCallback: false,
+  permsource : [3, 4, 7, 23, 45, 67, 342, 651, 568, 'awedc', 'ahord'],
+  //接受两个参数，a是permsource的数据源，pstr是用户输入的
+  passCallback: (a, pstr) => {
+    return pstr == `${a[0]}${a[2]}`;
+  }
+
+
+};

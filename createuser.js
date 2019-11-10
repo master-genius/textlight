@@ -1,6 +1,6 @@
 const funcs = require('./functions');
 const pg = require('pg');
-const dbcfg = require('./dbconfig');
+const dbcfg = require('./self/dbconfig');
 const admin = require('./model/admin');
 
 var pgdb = new pg.Pool(dbcfg);
@@ -17,7 +17,13 @@ let salt = funcs.makeSalt();
 let pass = funcs.makeSalt(7);
 
 ;(async () => {
-  let r = adm.create({
+  let u = await adm.get('root');
+  if (u !== null) {
+    console.log('root用户已存在');
+    return ;
+  }
+
+  let r = await adm.create({
     username : 'root',
     passwd : pass,
     salt : salt,
@@ -29,4 +35,6 @@ let pass = funcs.makeSalt(7);
     console.log(r);
   }
   console.log(`最高级用户：root, 初始密码：${pass}。请登录管理后台重新设置密码。`);
+  //process.exit(0);
+  pgdb.end();
 })();

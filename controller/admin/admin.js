@@ -64,7 +64,7 @@ class admin {
     return [
       {
         name : 'rootpass',
-        path : ['create', 'delete', 'update']
+        path : ['create', 'delete', 'update','get','list']
       },
       {
         name : 'adminDataFilter',

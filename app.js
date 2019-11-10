@@ -1,7 +1,7 @@
 /**
  * TextLight 内容发布系统，保持开源和简洁。发布于GPL协议。
  * 由雄安道简网络科技开发(https://www.w3xm.cn)。
- * version: 1.1.8
+ * version: 1.3.1
  */
 'use strict';
 
@@ -11,8 +11,8 @@ const titbit = require('titbit');
 const cluster = require('cluster');
 const tbload = require('titbit-loader');
 const pg = require('pg');
-const cfg = require('./config');
-const dbcfg = require('./dbconfig');
+const cfg = require('./self/config');
+const dbcfg = require('./self/dbconfig');
 const docs = require('./model/docs');
 const admin = require('./model/admin');
 const siteinfo = require('./model/siteinfo');
@@ -26,7 +26,7 @@ const theme = require('./theme');
 
 var app = new titbit ({
   debug : true,
-  bodyMaxSize: 4000000,
+  bodyMaxSize: 5000000,
   useLimit: true,
   maxConn : 1024,
   maxIPRequest: 500,
@@ -57,12 +57,10 @@ if (cluster.isWorker) {
   app.service.usePassCallback = false;
   app.service.permsource = '';
   try {
-    fs.accessSync('./self/config.js', fs.constants.F_OK);
-    var scfg = require('./self/config');
-    if (scfg.usePassCallback && typeof scfg.passCallback === 'function') {
-      app.service.usePassCallback = scfg.usePassCallback;
-      app.service.passCallback = scfg.passCallback;
-      app.service.permsource = scfg.permsource;
+    if (cfg.usePassCallback && typeof cfg.passCallback === 'function') {
+      app.service.usePassCallback = cfg.usePassCallback;
+      app.service.passCallback = cfg.passCallback;
+      app.service.permsource = cfg.permsource;
     }
   } catch (err) {}
   
@@ -88,7 +86,7 @@ if (cluster.isWorker) {
     topinfo: app.service.siteinfo.info.sitename+'管理后台',
     footer : cms.footer,
     menu : cms.menu,
-    initjs : `var _apidomain='${cfg.apidomain}:${cfg.port}';`
+    initjs : `var _apidomain=location.protocol + '//' + location.host;`
               +`var _adminapi='${cfg.adminapi}';\n`,
   });
 

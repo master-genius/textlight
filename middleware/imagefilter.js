@@ -4,6 +4,7 @@ module.exports = async (c, next) => {
     c.res.body = c.service.api.ret('EUDEF', '没有发现图片');
     return ;
   }
+
   if (f.length > 3000000) {
     c.res.body = c.service.api.ret('EUDEF', '图片超过限制大小');
     return ;

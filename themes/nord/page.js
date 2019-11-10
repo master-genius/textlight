@@ -79,24 +79,18 @@ class page {
       <body>
         <div class="container">
           <div class="row">
-            <div class="col-sm-1 col-md-1 col-lg-2"></div>
-            <div class="col-sm-10 col-md-10 col-lg-8">
+            <div class="col-md-1 col-lg-2"></div>
+            <div class="col-sm-12 col-md-10 col-lg-8">
               <header id="menu">
                 <a href="/" class="button">首页</a>
               </header>
             </div>
-            <div class="col-sm-1 col-md-1 col-lg-2"></div>
+            <div class="col-md-1 col-lg-2"></div>
           </div>
         </div>
         
         <div class="container" id="__main__" style="margin-top:0.5rem;">
-          <div class="row">
-            <div class="col-sm-1 col-md-1 col-lg-2"></div>
-            <div class="col-sm-10 col-md-10 col-lg-8">
-              ${p.main}
-            </div>
-            <div class="col-sm-1 col-md-1 col-lg-2"></div>
-          </div>
+          ${p.main}
         </div>
         <br>
         <div class="container">
