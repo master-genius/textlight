@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ ! -d "self" ] ; then
-    mkdir self
+    mkdir config
 fi
 
 DBNAME=textlight
@@ -12,13 +12,13 @@ DBHOST='127.0.0.1'
 initDbSql () {
     if [ ! -f "initdb/dblock" ] ; then
         echo '正在初始化数据库···（init database···）'
-        psql -U "$DBUSER" -d "$DBNAME" < initdb/init.sql && echo 'ok' > self/dblock && DBOK='ok'
+        psql -U "$DBUSER" -d "$DBNAME" < initdb/init.sql && echo 'ok' > config/dblock && DBOK='ok'
     else
         echo '数据库已经初始化'
     fi
 }
 
-if [ ! -a "self/dblock" ] ; then
+if [ ! -a "config/dblock" ] ; then
     echo '请输入数据库用户名，默认：textlight'
     read DBUSER
     if [[ -z "$DBUSER" ]] ; then
@@ -53,7 +53,7 @@ DBCFG="module.exports = {\n
     max: 8,\n
 };"
 
-echo -e $DBCFG > self/dbconfig.js
+echo -e $DBCFG > config/dbconfig.js
 
 echo '如果要修改连接配置，可以编辑self/dbconfig.js'
 
