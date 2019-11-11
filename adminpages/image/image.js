@@ -20,8 +20,8 @@ function renderImageList () {
 
   _dm.renderList(d, _imageList.slice(offset, offset+_pagesize), (m) => {
     return `<div class="cell small-12 medium-6 large-4" style="padding:0.5rem;text-align:center;">
-      <img src="${location.protocol}//${location.host}/image/${m}" style="max-height:16rem;width:auto;">
-      <pre style="overflow-x:auto;">${location.protocol}//${location.host}/image/${m}</pre>
+      <img src="${location.protocol}//${location.host}/api/image/${m}" style="max-height:16rem;width:auto;">
+      <pre style="overflow-x:auto;">${location.protocol}//${location.host}/api/image/${m}</pre>
       <div style="text-align:left;">
         <input type="checkbox" value="${m}" class="image-check-list">
       </div>

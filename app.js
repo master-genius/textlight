@@ -221,7 +221,7 @@ if (cluster.isWorker) {
 
   //如果你要去掉page，也是可以的，但是要保证此路由放在最后，也就是当前位置，
   //在此之前已经把所有的路由都加载完毕，否则如果是/:name则会影响其他路由的查找。
-  app.get('/page/:name', async c => {
+  app.get('/:name', async c => {
     try {
       c.res.body = c.service.theme.find(c.param.name);
       c.setHeader('cache-control', 'public,max-age=86400');

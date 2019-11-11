@@ -177,10 +177,10 @@ function renderMenu (ml) {
   });
   
   _dm.renderList(d, ml, (m) => {
-    return `<a href="/page/show?id=${m.id}" class="button">${m.title}</a>`;
+    return `<a href="/show?id=${m.id}" class="button">${m.title}</a>`;
   }, true);
   _dm.renderList(dr, ml, (m) => {
-    return `<a href="/page/show?id=${m.id}" class="drawer-menu-a" style="color: #424245;">${m.title}</a>`;
+    return `<a href="/show?id=${m.id}" class="drawer-menu-a" style="color: #424245;">${m.title}</a>`;
   }, true);
 }
 

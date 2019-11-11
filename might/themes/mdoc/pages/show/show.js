@@ -14,7 +14,7 @@ for (let i=0;i<qarr.length; i++) {
 }
 
 function renderContent(d) {
-  d.content = d.content.replace(/\<img/ig, '<img loading="lazy" ');
+  d.content = d.content.replace(/\<img/ig, '<img lazyload="on" ');
   var html = `<div>
     <div class="doc-title">
       <h3>${d.title}</h3>

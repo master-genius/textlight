@@ -31,7 +31,7 @@ function adminLogin(t) {
   }
 
   t.disabled = true;
-  fetch('/adminlogin', {
+  fetch('/a/adminlogin', {
     method : 'POST',
     mode : 'cors',
     headers : {
@@ -77,7 +77,7 @@ function checkAdminInfo () {
 window.onload = function () {
   checkAdminInfo();
   setTimeout(() => {
-    fetch('/adminlogin/123').then(res=>{
+    fetch('/a/adminlogin/123').then(res=>{
       return res.json();
     }).then(d => {
       let pd = document.getElementById('pass-hint');

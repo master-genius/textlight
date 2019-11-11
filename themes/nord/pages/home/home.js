@@ -43,7 +43,7 @@ async function getCount() {
 }
 
 function fmtDoc(d) {
-  return `<div class="card"><a href="/page/show?id=${d.id}" target="_blank">
+  return `<div class="card"><a href="/show?id=${d.id}" target="_blank">
     <h4 style="color:#4a4a4f;" class="title-inline">${d.title.trim()}</h4>
     <p style="color:#676869;">
      ${d.updatetime.substring(0,16).replace('T', ' ')}

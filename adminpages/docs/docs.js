@@ -153,7 +153,7 @@ function initEditor (html = '') {
       })
       .then(d => {
         if (d.status === 'OK') {
-          insert(`/image/${d.data.path}/${d.data.name}`);
+          insert(`/api/image/${d.data.path}/${d.data.name}`);
         } else {
           sysnotify(d.errmsg, 'err');
         }
@@ -262,7 +262,7 @@ function postContent () {
 function docTemp (d) {
   return `<div class="small-12 medium-6 large-4 doc-list">
     <div class="doc-list-content">
-    <p><a href="javascript:neDoc('${d.id}');"><img src="/siteimage/edit.png" style="width:auto;height:auto;">
+    <p><a href="javascript:neDoc('${d.id}');"><img src="/a/siteimage/edit.png" style="width:auto;height:auto;">
     <span style="font-size:105%;">${d.title}</span></a></p>
     <div>状态：${d.is_public ? '已发布' : '未发布'}${d.is_top ? ', 置顶' : ''}</div>
     <div>作者：${d.adminname}</div>
