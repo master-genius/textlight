@@ -1,5 +1,5 @@
 module.exports = {
-    apidomain : 'https://super.w3xm.top',
+    apidomain : 'http://localhost:2021',
     domain : 'https://super.w3xm.top',
     port : 2021,
     host : '0.0.0.0',

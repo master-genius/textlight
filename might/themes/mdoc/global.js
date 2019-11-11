@@ -184,13 +184,7 @@ function renderMenu (ml) {
 }
 
 window.onpageshow = function () {
-  apiCall('/api/content?type=company').then(d => {
-    if (d.status == 'OK') {
-      renderMenu(d.data);
-    } else{
-      sysnotify(d.errmsg, 'err');
-    }
-  });
+  
 };
 
 function totalPage (t, p) {

@@ -14,13 +14,13 @@ for (let i=0;i<qarr.length; i++) {
 }
 
 function renderContent(d) {
-  d.content = d.content.replace(/\<img/ig, '<img lazyload="on" ');
+  d.data = d.data.replace(/\<img/ig, '<img lazyload="on" ');
   var html = `<div>
     <div class="doc-title">
-      <h3>${d.title}</h3>
+      <h3>${d.name}</h3>
     </div>
     <p><hr></hr></p>
-    <p>${d.content}</p>
+    <p>${d.data}</p>
   </div>`;
   let dm = document.getElementById('content');
   if (dm) {
@@ -30,14 +30,14 @@ function renderContent(d) {
       ads[i].target="_blank";
     }
   }
-  document.querySelector('title').innerHTML += ' - ' + d.title;
+  document.querySelector('title').innerHTML += ' - ' + d.name;
 }
 
 
 window.onload = function () {
   if (_id !== null && _id.trim().length > 0) {
     _dm.loading();
-    apiCall('/api/content/'+_id).then(d => {
+    apiCall('/mapi/query/'+_id).then(d => {
       if (d.status == 'OK') {
         renderContent(d.data);
       } else {

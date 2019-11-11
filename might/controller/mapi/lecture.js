@@ -15,9 +15,7 @@ class lecture {
             };
             return ;
         }
-
-        r.status = 0;
-        c.res.body = r;
+        c.res.body = c.service.api.ret(0, r);
     }
 
     async list (c) {
@@ -39,7 +37,7 @@ class lecture {
         //let result = c.service.docdb.searchLec(cstr, count, offset);
         let result = c.service.docdb.lectureList;
 
-        c.res.body = result;
+        c.res.body = c.service.api.ret(0, result);
     }
 
 

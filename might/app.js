@@ -156,6 +156,27 @@ if (cluster.isWorker) {
         }
     }, '@page-static');
 
+    var faviconCache = null;
+    app.router.get('/favicon.ico', async c => {
+        try {
+            c.setHeader('content-type', 'image/x-icon');
+            c.res.encoding = 'binary';
+            if (faviconCache && (faviconCache.time + 300000) > Date.now()) {
+                c.res.body = faviconCache.data;
+                c.setHeader('content-length', faviconCache.length);
+            } else {
+                c.res.body = await funcs.readFile('./favicon.ico', 'binary');
+                faviconCache = {
+                data : c.res.body,
+                length: c.res.body.length,
+                time: Date.now()
+                };
+            }
+        } catch (err) {
+        c.res.body = '';
+        }
+    });
+
     //在此之前已经把所有的路由都加载完毕，否则如果是/:name则会影响其他路由的查找。
     app.get('/:name', async c => {
         try {

@@ -55,7 +55,7 @@ function fmtDoc(d) {
 function docList () {
   let qstr = parseArgs();
   let page = wo.get('doc-home-page');
-  qstr += `&pagesize=${_pagesize}&offset=${_pagesize * (page-1)}`;
+  qstr += `&count=${_pagesize}&offset=${_pagesize * (page-1)}`;
   apiCall('/mapi/query?type=news'+qstr).then(d => {
     _dm.renderList(document.getElementById('doc-list'), d.data, fmtDoc);
     document.body.scrollTop = 0;
@@ -130,7 +130,7 @@ async function getTags () {
       var ht = '';
       let tags = d.data;
       for (let i=0; i< tags.length; i++) {
-        ht += `<div class="card"><a href="javascript:searchClickTag('${tags[i]}');" style="color:#bc5920;">${tags[i]}</a></div>`;
+        ht += `<div class="card"><a href="javascript:searchClickTag('${tags[i]}');" style="color:#bc5920;padding:0.5rem;">${tags[i]}</a></div>`;
       }
       td.innerHTML = ht;
     }
@@ -190,8 +190,8 @@ function hideGotoTop() {
 function showGotoTop() {
   let t = document.getElementById('goto-top');
   if (t) {
-    t.innerHTML = '<a href="javascript:gotoTop();" class="goto-top" style="line-height:5rem;text-align:center;">TOP</a>';
-    t.style.cssText = 'z-index:1;position:fixed;right:4%;bottom:4%;line-height:5rem;';
+    t.innerHTML = '<a href="javascript:gotoTop();" style="line-height:5rem;text-align:center;"><img src="/mapi/image/top.png"></a>';
+    t.style.cssText = 'z-index:1;position:fixed;right:4%;bottom:4%;line-height:3rem;';
   }
 }
 
