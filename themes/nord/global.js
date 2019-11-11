@@ -200,3 +200,52 @@ function totalPage (t, p) {
   }
   return (t % p == 0) ? t/p : parseInt(t/p) + 1;
 }
+
+var _gotoTop = new function () {
+
+  this.hideGotoTop = function () {
+    let t = document.getElementById('goto-top');
+    if (t) {
+      t.innerHTML = '';
+      t.style.cssText = '';
+      t.className = '';
+    }
+  };
+
+  this.showGotoTop = function () {
+    let t = document.getElementById('goto-top');
+    if (t) {
+      t.innerHTML = '<a href="javascript:_gotoTop.gotoTop();" style="line-height:5rem;text-align:center;"><img src="/theme/icon/top.png"></a>';
+      t.style.cssText = 'z-index:1;position:fixed;right:3.2%;bottom:2%;line-height:3rem;';
+    }
+  };
+
+  this._gotoToping = false;
+  this.gotoTop = function () {
+    var sctop = document.body.scrollTop + document.documentElement.scrollTop;
+    this.hideGotoTop();
+    _gotoToping = true;
+    var i=0;
+    var interval = setInterval (() => {
+      if (sctop <= 0) {
+        clearInterval(interval);
+        _gotoToping = false;
+        return ;
+      }
+      sctop -= 180 + (10*i++);
+      if (sctop < 0) {sctop = 0;}
+      document.documentElement.scrollTop = sctop;
+      document.body.scrollTop = sctop;
+    }, 30);
+  };
+
+  this.onScroll = function () {
+    let sctop = document.body.scrollTop + document.documentElement.scrollTop;
+    if (sctop < 20 || this._gotoToping) {
+      this.hideGotoTop();
+      return ;
+    }
+    this.showGotoTop();
+  };
+
+};

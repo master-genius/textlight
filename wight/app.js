@@ -17,10 +17,12 @@ const api = require('../lib/api');
 var app = new titbit({
     debug: true,
     showLoadInfo: false,
-    maxIPRequest: 100,
-    maxConn: 500,
+    maxIPCache: 100000, //缓存最大IP个数
+    peerTime: 5, //单位时间5秒
+    maxIPRequest: 50, //单位时间内单个IP可以访问50次
+    maxConn: 200, //每个进程最大同时支持200个连接
     useLimit: true,
-    bodyMaxSize: 1000000, 
+    bodyMaxSize: 1000000,
 });
 
 if (cluster.isWorker) {
@@ -127,7 +129,7 @@ if (cluster.isWorker) {
 
     var _themeStaticCache = {};
     app.router.get('/theme/*', async c => {
-        let encoding = 'utf8';
+        var encoding = 'utf8';
         if (c.param.starPath.indexOf('.css') > 0) {
             c.setHeader('content-type', 'text/css; charset=utf-8');
         } else if (c.param.starPath.indexOf('.js') > 0) {
@@ -140,6 +142,7 @@ if (cluster.isWorker) {
             c.setHeader('content-type', 'image/png');
         }
         if (_themeStaticCache[c.param.starPath] !== undefined) {
+            c.res.encoding = encoding;
             c.setHeader('cache-control', 'public,max-age=86400');
             c.res.body = _themeStaticCache[c.param.starPath];
             return ;
@@ -203,6 +206,10 @@ if (process.argv.indexOf('-d') > 0) {
 var host = 'localhost';
 if (process.argv.indexOf('-h0') > 0) {
     host = '0.0.0.0';
+}
+
+if (process.argv.indexOf('--no-limit') > 0) {
+    app.config.useLimit = false;
 }
 
 app.daemon(cfg.port, host, 2);

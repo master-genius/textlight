@@ -51,3 +51,7 @@ window.onload = function () {
     });
   }
 };
+
+window.onscroll = function () {
+  _gotoTop.onScroll();
+};

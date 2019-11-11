@@ -28,8 +28,10 @@ var app = new titbit ({
   debug : true,
   bodyMaxSize: 5000000,
   useLimit: true,
-  maxConn : 1024,
-  maxIPRequest: 500,
+  maxConn : 300,
+  maxIPCache: 100000,
+  maxIPRequest: 80,
+  peerTime: 3,
   loadInfoFile : '/tmp/loadinfo.log'
 });
 
@@ -190,7 +192,7 @@ if (cluster.isWorker) {
   }, '@page-static');
 
   app.router.get('/theme/*', async c => {
-    let encoding = 'utf8';
+    var encoding = 'utf8';
     if (c.param.starPath.indexOf('.css') > 0) {
         c.setHeader('content-type', 'text/css; charset=utf-8');
     } else if (c.param.starPath.indexOf('.js') > 0) {
@@ -203,6 +205,7 @@ if (cluster.isWorker) {
       c.setHeader('content-type', 'image/png');
     }
     if (_themeStaticCache[c.param.starPath] !== undefined) {
+      c.res.encoding = encoding;
       c.setHeader('cache-control', 'public,max-age=86400');
       c.res.body = _themeStaticCache[c.param.starPath];
       return ;
@@ -281,6 +284,10 @@ if (cluster.isWorker) {
 if (process.argv.indexOf('-d') > 0) {
   app.config.daemon = true;
   app.config.showLoadInfo = true;
+}
+
+if (process.argv.indexOf('--no-limit') > 0) {
+  app.config.useLimit = false;
 }
 
 app.daemon(cfg.port, cfg.host);

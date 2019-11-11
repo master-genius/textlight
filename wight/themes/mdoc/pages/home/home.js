@@ -43,8 +43,9 @@ async function getCount() {
 }
 
 function fmtDoc(d) {
-  return `<div class="card"><a href="/show?id=${d.id}" target="_blank">
-    <h4 style="color:#4a4a4f;" class="title-inline">${d.name.trim()}</h4>
+  return `<div class="card" style="height: 5rem;" title="${d.name}">
+    <a href="/show?id=${d.id}" target="_blank">
+    <h5 style="color:#4a4a4f;" class="title-inline">${d.name.trim()}</h5>
     <p style="color:#676869;">@${d.id.split('/')[0]}</p>
     <p style="color:#676869;">
      ${d.time}
@@ -178,46 +179,6 @@ function clearSearch() {
   searchDoc(d);
 }
 
-function hideGotoTop() {
-  let t = document.getElementById('goto-top');
-  if (t) {
-    t.innerHTML = '';
-    t.style.cssText = '';
-    t.className = '';
-  }
-}
-
-function showGotoTop() {
-  let t = document.getElementById('goto-top');
-  if (t) {
-    t.innerHTML = '<a href="javascript:gotoTop();" style="line-height:5rem;text-align:center;"><img src="/mapi/image/top.png"></a>';
-    t.style.cssText = 'z-index:1;position:fixed;right:4%;bottom:4%;line-height:3rem;';
-  }
-}
-
-var _gotoToping = false;
-function gotoTop() {
-  var sctop = document.body.scrollTop + document.documentElement.scrollTop;
-  hideGotoTop();
-  _gotoToping = true;
-  var interval = setInterval (() => {
-    if (sctop <= 0) {
-      clearInterval(interval);
-      _gotoToping = false;
-      return ;
-    }
-    sctop -= 169;
-    if (sctop < 0) {sctop = 0;}
-    document.documentElement.scrollTop = sctop;
-    document.body.scrollTop = sctop;
-  }, 30);
-}
-
 window.onscroll = function () {
-  let sctop = document.body.scrollTop + document.documentElement.scrollTop;
-  if (sctop < 20 || _gotoToping) {
-    hideGotoTop();
-    return ;
-  }
-  showGotoTop();
+  this._gotoTop.onScroll();
 };

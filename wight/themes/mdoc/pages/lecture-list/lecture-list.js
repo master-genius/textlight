@@ -27,7 +27,6 @@ function lecTemp (lec) {
   `;
 }
 
-
 function showLectureList(li) {
   let lecDom = document.getElementById('lecture-list');
   _dm.renderList(lecDom, li, lecTemp);
@@ -36,4 +35,8 @@ function showLectureList(li) {
 window.onpageshow = async function() {
   getLecList();
 
+};
+
+window.onscroll = function () {
+  this._gotoTop.onScroll();
 };
