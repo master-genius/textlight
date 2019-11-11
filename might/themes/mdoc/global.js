@@ -39,10 +39,13 @@ var wo = new function() {
 async function apiCall (path, options = {}) {
   return fetch (path, options)
         .then(res => {
-            if (options.dataType && options.dateType !== 'json') {
-                return res.text();
-            }
-            return res.json();
+          if (!res.ok) {
+            throw new Error(`Error: status ${res.status}`);
+          }
+          if (options.dataType && options.dateType !== 'json') {
+            return res.text();
+          }
+          return res.json();
         }, err => {
             throw err;
         });

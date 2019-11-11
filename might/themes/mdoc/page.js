@@ -65,7 +65,7 @@ class page {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,height=device-height">
         <title>${this.si.title}</title>
-        <link href="/theme/css/mini-nord.min.css" rel="stylesheet">
+        <link href="/theme/css/mini-default.min.css" rel="stylesheet">
         ${p.header}
         <style>
           ${p.globalcss}
@@ -78,14 +78,15 @@ class page {
       </head>
       <body>
         <div class="container">
-          <div class="row">
-            <div class="col-md-1 col-lg-2"></div>
-            <div class="col-sm-12 col-md-10 col-lg-8">
-              <header id="menu">
-                <a href="/" class="button">首页</a>
-              </header>
+          <div class="row shadowed" style="line-height:3.5rem;text-align:center;padding:0.5rem;margin-bottom:0.8rem;">
+            <div class="col-sm-12 col-md-4 col-lg-3">
+              <a href="/">
+              <img src="/mapi/image/logo.png" style="max-width:5.8rem;height:auto;">
+              </a>
             </div>
-            <div class="col-md-1 col-lg-2"></div>
+            <div class="col-sm-12 col-md-8 col-lg-9">
+              <h3 style="color:#4a4a4f;">${this.si.topinfo}</h3>
+            </div>
           </div>
         </div>
         
@@ -111,7 +112,7 @@ class page {
           ${p.js}
         </script>
         <script>
-          function setMainSize() {
+          function _setMainSize() {
             let d = document.getElementById('__main__');
             if (d) {
               d.style.minHeight = document.documentElement.clientHeight * 0.85 + 'px';
@@ -120,15 +121,15 @@ class page {
           if (typeof window.onresize === 'function') {
               let _wrz = window.onresize;
               window.onresize = function () {
-                  setMainSize();
+                  _setMainSize();
                   _wrz();
               };
           } else {
             window.onresize = function () {
-              setMainSize();
+              _setMainSize();
             };
           }
-          setMainSize();
+          _setMainSize();
         </script>
       </body>
     </html>`;

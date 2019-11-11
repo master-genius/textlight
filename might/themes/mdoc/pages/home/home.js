@@ -25,10 +25,10 @@ function parseArgs () {
   }
 
   if (kwd) {
-    qstr += `&kwd=${encodeURIComponent(kwd)}`;
+    qstr += `&q=${encodeURIComponent(kwd)}`;
   }
   if (tag) {
-    qstr += `&tag=${encodeURIComponent(tag)}`;
+    qstr += `&group=${encodeURIComponent(tag)}`;
   }
 
   return qstr;
@@ -36,17 +36,18 @@ function parseArgs () {
 
 async function getCount() {
   let qstr = parseArgs();
-  return apiCall(`/api/count?type=news${qstr}`).then(d => {
+  return apiCall(`/mapi/count?a=1${qstr}`).then(d => {
     _total = d.data;
     _pagi.setpi(wo.get('doc-home-page'), totalPage(_total, _pagesize));
   });
 }
 
 function fmtDoc(d) {
-  return `<div class="card"><a href="/page/show?id=${d.id}" target="_blank">
-    <h4 style="color:#4a4a4f;" class="title-inline">${d.title.trim()}</h4>
+  return `<div class="card"><a href="/show?id=${d.id}" target="_blank">
+    <h4 style="color:#4a4a4f;" class="title-inline">${d.name.trim()}</h4>
+    <p style="color:#676869;">@${d.id.split('/')[0]}</p>
     <p style="color:#676869;">
-     ${d.updatetime.substring(0,16).replace('T', ' ')}
+     ${d.time}
     </p>
   </a></div>`;
 }
@@ -55,7 +56,7 @@ function docList () {
   let qstr = parseArgs();
   let page = wo.get('doc-home-page');
   qstr += `&pagesize=${_pagesize}&offset=${_pagesize * (page-1)}`;
-  apiCall('/api/content?type=news'+qstr).then(d => {
+  apiCall('/mapi/query?type=news'+qstr).then(d => {
     _dm.renderList(document.getElementById('doc-list'), d.data, fmtDoc);
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
@@ -93,7 +94,7 @@ async function listenOrSearch(t) {
 }
 
 async function getSiteInfo() {
-  return apiCall('/api/siteinfo').then(d => {
+  return apiCall('/mapi/siteinfo').then(d => {
     if (d.status === 'OK') {
       return d.data;
     }
@@ -109,7 +110,7 @@ function loadSideInfo(data) {
 }
 
 async function getSideInfo () {
-  return apiCall('/api/side/word').then(d => {
+  return apiCall('/mapi/side/word').then(d => {
     if (d.status === 'OK') {
       loadSideInfo(d.data);
     }
@@ -123,11 +124,11 @@ function searchClickTag (tag) {
 }
 
 async function getTags () {
-  return apiCall('/api/tags').then(d => {
+  return apiCall('/mapi/group').then(d => {
     if (d.status === 'OK') {
       let td = document.getElementById('doc-tags');
       var ht = '';
-      let tags = JSON.parse(d.data);
+      let tags = d.data;
       for (let i=0; i< tags.length; i++) {
         ht += `<div class="card"><a href="javascript:searchClickTag('${tags[i]}');" style="color:#bc5920;">${tags[i]}</a></div>`;
       }
@@ -189,8 +190,8 @@ function hideGotoTop() {
 function showGotoTop() {
   let t = document.getElementById('goto-top');
   if (t) {
-    t.innerHTML = '<a href="javascript:gotoTop();" class="goto-top">TOP</a>';
-    t.style.cssText = 'z-index:1;position:fixed;right:4%;bottom:4%;height:2.2rem;';
+    t.innerHTML = '<a href="javascript:gotoTop();" class="goto-top" style="line-height:5rem;text-align:center;">TOP</a>';
+    t.style.cssText = 'z-index:1;position:fixed;right:4%;bottom:4%;line-height:5rem;';
   }
 }
 

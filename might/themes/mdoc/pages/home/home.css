@@ -17,7 +17,8 @@ a {
 
 .goto-top {
   background: #2e3440;
-  border-radius: 1.2rem;
+  border-top-left-radius: 6rem;
+  border-top-right-radius: 6rem;
   color: #fafafa;
   padding:0.6rem;
 }

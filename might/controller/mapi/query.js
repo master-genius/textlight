@@ -13,9 +13,7 @@ class query {
             c.status(404);
             return ;
         }
-
-        r.status = 0;
-        c.res.body = r;
+        c.res.body = c.service.api.ret(0, r);
     }
 
     async list (c) {
@@ -43,7 +41,7 @@ class query {
 
         let result = c.service.docdb.select(cstr, count, offset, group);
 
-        c.res.body = result;
+        c.res.body = c.service.api.ret(0, result);
     }
 
     __mid () {

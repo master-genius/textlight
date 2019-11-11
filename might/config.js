@@ -7,9 +7,11 @@ module.exports = {
     group: 0,
 
     siteinfo : {
-        title : '',
+        title : '深奥的简洁',
         sitename : '',
-        copyright: '',
-        footer : ''
+        copyright: '&copy; 道简网络科技',
+        footer : '',
+        topinfo: '避免一切肤浅，穿透一切复杂',
+        theme : 'mdoc'
     }
 };

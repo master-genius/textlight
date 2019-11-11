@@ -5,7 +5,8 @@ class group {
     }
 
     async list (c) {
-        c.res.body = Object.keys(c.service.docdb.groups);
+        let groups = Object.keys(c.service.docdb.groups);
+        c.res.body = c.service.api.ret(0, groups);
     }
 }
 

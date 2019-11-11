@@ -1,5 +1,7 @@
 'use strict';
 
+process.chdir(__dirname);
+
 const titbit = require('titbit');
 const titloader = require('titbit-loader');
 const linuxdoc = require('./loaddoc');
@@ -10,6 +12,7 @@ const crypto = require('crypto');
 const cfg = require('./config');
 const gohttp = require('gohttp');
 const theme = require('../theme');
+const api = require('../lib/api');
 
 var app = new titbit({
     debug: true,
@@ -21,6 +24,7 @@ var app = new titbit({
 });
 
 if (cluster.isWorker) {
+    app.service.api = new api();
     app.service.funcs = funcs;
 
     var _apikey = {
@@ -92,7 +96,7 @@ if (cluster.isWorker) {
     app.service.wdb = wdb;
     app.service.ndb = ndb;
     app.service.docpath = cfg.docpath;
-    app.service.imagepath = __dirname + '/image';
+    app.service.imagePath = __dirname + '/image';
     app.service.funcs = funcs;
     app.service.crypto = crypto;
     app.service.hcli = gohttp;
@@ -108,13 +112,15 @@ if (cluster.isWorker) {
 
 if (cluster.isWorker) {
 
+    app.service.siteinfo = cfg.siteinfo;
     try {
         var thm = new theme({
             path : __dirname+'/themes',
             name : 'mdoc',
-            siteinfo : cfg.siteinfo
+            siteinfo : cfg.siteinfo,
         });
         thm.load();
+        app.service.theme = thm;
     } catch (err){
         console.log(err);
     }
@@ -142,7 +148,7 @@ if (cluster.isWorker) {
             c.setHeader('cache-control', 'public,max-age=86400');
             c.res.encoding = encoding;
             c.res.body = await funcs.readFile(
-                `./themes/${c.service.siteinfo.info.theme}/${c.param.starPath}`, encoding);
+                `./themes/${c.service.siteinfo.theme}/${c.param.starPath}`, encoding);
             _themeStaticCache[c.param.starPath] = c.res.body;
         } catch (err) {
             console.log(err);
@@ -150,7 +156,6 @@ if (cluster.isWorker) {
         }
     }, '@page-static');
 
-    //如果你要去掉page，也是可以的，但是要保证此路由放在最后，也就是当前位置，
     //在此之前已经把所有的路由都加载完毕，否则如果是/:name则会影响其他路由的查找。
     app.get('/:name', async c => {
         try {
@@ -163,6 +168,9 @@ if (cluster.isWorker) {
         } catch (err) {
             c.status (404);
         }
+    }, '@page-static');
+    app.get('/', async c => {
+        c.res.body = c.service.theme.find('home');
     }, '@page-static');
 }
 

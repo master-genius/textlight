@@ -14,18 +14,7 @@ class count {
         if (c.query.q) {
             cstr = c.query.q.substring(0,20);
         }
-        c.res.body = {
-            status : 0,
-            count: c.service.docdb.count(cstr, group)
-        };
-    }
-
-    __mid () {
-        return [
-            {
-                name : 'apipass',
-            }
-        ];
+        c.res.body = c.service.api.ret(0, c.service.docdb.count(cstr, group));
     }
 
 }
