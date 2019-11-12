@@ -16,11 +16,32 @@ var adm = new admin(pgdb);
 let salt = funcs.makeSalt();
 let pass = funcs.makeSalt(7);
 
+let ind = process.argv.indexOf('-p');
+if (ind > 0) {
+  if (process.argv.length <= ind + 1) {
+    console.log('-p参数需要跟密码');
+    process.exit(1);
+  }
+  pass = process.argv[ind+1];
+}
+
 ;(async () => {
   let u = await adm.get('root');
   if (u !== null) {
-    console.log('root用户已存在');
-    return ;
+    if (ind < 0) {
+      console.log('root用户已存在');
+      pgdb.end();
+      return ;
+    }
+    console.log('更新密码···');
+    let r = await adm.setPasswd(u.id, pass);
+    if (r) {
+      console.log('密码已更新');
+    } else {
+      console.log('密码更新失败');
+    }
+    pgdb.end();
+    return;
   }
 
   let r = await adm.create({
