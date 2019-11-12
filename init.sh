@@ -16,7 +16,7 @@ if [ ! -d "sitedata/image" ] ; then
 fi
 
 echo '建立站点文件···'
-SITEF="footer copyright sitename title"
+SITEF="footer copyright sitename title theme"
 for f in $SITEF ; do
     if [ ! -f "$f" ] ; then
         touch sitedata/box/siteinfo/$f
