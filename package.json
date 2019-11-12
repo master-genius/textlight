@@ -1,0 +1,31 @@
+{
+  "name": "textlight",
+  "version": "1.0.0",
+  "description": "TextLight是基于NodeJS开发的内容管理系统（Content Management System）。前后端全部使用JS完成，依靠NodeJS高效的异步IO可以大大提升执行效率，提高网站可以支撑的并发量。",
+  "main": "apage.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "marked": "^0.7.0",
+    "gohttp": "^2.0.2",
+    "pg": "^7.12.1",
+    "titbit-loader": "^1.1.8",
+    "titbit": "^4.2.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/master-genius/textlight.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/master-genius/textlight/issues"
+  },
+  "homepage": "https://github.com/master-genius/textlight#readme"
+}
