@@ -20,7 +20,7 @@ initDbSql () {
     fi
 }
 
-if [ ! -a "config/dblock" ] ; then
+if [ ! -f "config/dblock" ] ; then
     echo '请输入数据库用户名，默认：textlight'
     read DBUSER
     if [[ -z "$DBUSER" ]] ; then
