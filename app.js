@@ -95,7 +95,7 @@ if (cluster.isWorker) {
   tb.init(app);
 
   app.service.siteinfo = new siteinfo({
-    path : __dirname + '/siteinfo',
+    path : __dirname + '/sitedata/box/siteinfo',
     watchFile : __dirname + '/servnotify/reload-siteinfo',
     watchTheme :  __dirname + '/servnotify/change-theme',
     themedir : __dirname + '/themes'

@@ -6,6 +6,30 @@ if [ ! -d "config" ] ; then
     mkdir config
 fi
 
+echo '创建站点目录···'
+if [ ! -d "sitedata/box/siteinfo" ] ; then
+    mkdir -p sitedata/box/siteinfo
+fi
+
+if [ ! -d "sitedata/image" ] ; then
+    mkdir -p sitedata/image
+fi
+
+echo '建立站点文件···'
+SITEF="footer copyright sitename title"
+for f in SITEF ; do
+    if [ ! -f "$f" ] ; then
+        touch sitedata/box/siteinfo/$f
+        if [ $f = "title" ] ; then
+            echo "TextLight" > sitedata/box/siteinfo/$f
+        elif [ $f = "copyright" ] ; then
+            echo '&copy; <a href="https://www.w3xm.cn" target="_blank">道简网络科技</a>' > sitedata/box/siteinfo/$f
+        elif [ $f = "theme" ] ; then
+            echo 'default' > sitedata/box/siteinfo/$f
+        fi
+    fi
+done
+
 DBNAME=textlight
 DBUSER=textlight
 DBOK=
