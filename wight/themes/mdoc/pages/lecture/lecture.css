@@ -18,7 +18,7 @@ a {
 .lecture-list {
   white-space: nowrap;
   overflow-x: auto;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 .lecture-list a {
@@ -27,8 +27,8 @@ a {
 
 .lecture-list-name {
   color: #4a4a4a;
-  line-height: 2.2rem;
-  padding-top: 0.3rem;
+  line-height: 2.5rem;
+  padding-top: 0.5rem;
   padding-bottom: 0.6rem;
   padding-left: 0.4rem;
   padding-right: 0.4rem;

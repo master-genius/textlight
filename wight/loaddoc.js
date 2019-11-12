@@ -68,6 +68,7 @@ class loaddoc {
     this.fileData = {};
     this.kkeys = [];
     this.groups = {};
+    this.total = 0;
     this.loaddir(dirn || this.docpath, '', 0);
     this.kkeys = Object.keys(this.keyFile);
   }
@@ -109,7 +110,7 @@ class loaddoc {
         }
       }
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
     }
   }
 

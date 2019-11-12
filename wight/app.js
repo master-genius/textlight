@@ -19,11 +19,19 @@ var app = new titbit({
     showLoadInfo: false,
     maxIPCache: 100000, //缓存最大IP个数
     peerTime: 5, //单位时间5秒
-    maxIPRequest: 50, //单位时间内单个IP可以访问50次
+    maxIPRequest: 80, //单位时间内单个IP可以访问50次
     maxConn: 200, //每个进程最大同时支持200个连接
     useLimit: true,
     bodyMaxSize: 1000000,
 });
+
+if (cluster.isMaster) {
+    fs.watch('./watcher', (evt, name) => {
+        if (name === 'stop-server') {
+            process.kill(0, 'SIGTERM');
+        }
+    });
+}
 
 if (cluster.isWorker) {
     app.service.api = new api();
@@ -54,12 +62,6 @@ if (cluster.isWorker) {
 }
 
 if (cluster.isWorker) {
-
-    //监听仓库变化并重启服务。
-    /* fs.watchFile(docpath+'/.git/FETCH_HEAD', (curr, prev) => {
-        process.exit(0);
-    }); */
-
     var ldb = new linuxdoc({
         docpath: cfg.docpath,
         domain:  cfg.apidomain,
@@ -113,12 +115,23 @@ if (cluster.isWorker) {
 }
 
 if (cluster.isWorker) {
+    fs.watch('./watcher', (evt, name) => {
+        if (name === 'reload-data') {
+            ldb.init();
+            ldb.initLecture();
+        } else if (name === 'restart-server') {
+            process.exit(0);
+        }
+    });
+}
+
+if (cluster.isWorker) {
 
     app.service.siteinfo = cfg.siteinfo;
     try {
         var thm = new theme({
             path : __dirname+'/themes',
-            name : 'mdoc',
+            name : cfg.theme,
             siteinfo : cfg.siteinfo,
         });
         thm.load();

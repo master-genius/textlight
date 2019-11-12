@@ -1,6 +1,13 @@
+var _lecList = [];
+
+function searchLec (t) {
+
+}
+
 function getLecList () {
   return apiCall('/mapi/lecture').then(d => {
     if (d.status == 'OK') {
+      _lecList = d.data;
       showLectureList(d.data);
     } else {
       sysnotify('获取信息错误');
@@ -34,7 +41,6 @@ function showLectureList(li) {
 
 window.onpageshow = async function() {
   getLecList();
-
 };
 
 window.onscroll = function () {

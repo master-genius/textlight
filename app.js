@@ -35,6 +35,14 @@ var app = new titbit ({
   loadInfoFile : '/tmp/loadinfo.log'
 });
 
+if (cluster.isMaster) {
+  fs.watch('./watcher', (evt, name) => {
+    if (name === 'stop-server') {
+      process.kill(0, 'SIGTERM');
+    }
+  });
+}
+
 if (cluster.isWorker) {
   var _pgdb = new pg.Pool(dbcfg);
   app.service.pool = _pgdb;
@@ -124,6 +132,8 @@ if (cluster.isWorker) {
     } else if (name === 'change-theme') {
       _themeStaticCache = {};
       app.service.theme.setTheme(app.service.siteinfo.info.theme);
+    } else if (name === 'restart-server') {
+      process.exit(0);
     }
   });
 

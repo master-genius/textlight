@@ -193,10 +193,6 @@ window.onpageshow = async function() {
     })
     .catch (err => { console.log(err); });
   }
-  
-  let lec = document.getElementById('lecture-list');
-  //lec.style.height = `${document.body.clientHeight * 0.3}px`;
-  lec.style.cssText = 'z-index:2;position:fixed;left:2%;top:10rem;height:58%;max-width:34.5%;overflow-x:auto;font-size:90%;';
 };
 
 window.onscroll = function () {

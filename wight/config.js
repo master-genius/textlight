@@ -13,5 +13,6 @@ module.exports = {
         footer : '',
         topinfo: '避免一切肤浅，穿透一切复杂',
         theme : 'mdoc'
-    }
+    },
+    theme : 'mdoc',
 };
