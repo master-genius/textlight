@@ -19,7 +19,7 @@ class tags {
   }
 
   async list (c) {
-    let tlist = await this.getTags(c.service.sitedata+'/tags.txt', 
+    let tlist = await this.getTags(c.service.sitedata+'/data/tags.txt', 
                     c.service.funcs);
     c.res.body = c.service.api.ret(0, tlist);
   }

@@ -1,8 +1,0 @@
-<strong style="color:#565759;">
-  <p>不言之教，无为之益，天下希及之。</p>
-  <p align="right">———《道德经》</p>
-</strong>
-
-<a href="https://www.w3xm.top" target="_blank">
-  <img src="/api/siteimage/images/b.jpg">
-</a>
