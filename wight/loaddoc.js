@@ -278,6 +278,10 @@ class loaddoc {
   }
 
   count (cstr, group = null) {
+    if ((cstr === '' || cstr === null) && group === null) {
+      return this.total;
+    }
+
     let preg = this.parseCond(cstr);
     let total = 0;
     let grpkeys = this.kkeys;
@@ -287,11 +291,13 @@ class loaddoc {
       }
       grpkeys = this.groups[group];
     }
+
+    if (cstr === '' || cstr === null) {
+      return grpkeys.length;
+    }
+
     for (let i=0; i<grpkeys.length; i++) {
       if ( preg.test(grpkeys[i]) ) {
-        if (group && this.keyFile[ grpkeys[i] ].indexOf(group) !== 0) {
-          continue;
-        }
         total += 1;
       }
     }

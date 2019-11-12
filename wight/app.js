@@ -76,8 +76,9 @@ if (cluster.isWorker) {
 
     ldb.init();
     ldb.initLecture();
+    //console.log(ldb.groups);
 
-    var wdb = new linuxdoc({
+    /* var wdb = new linuxdoc({
         docpath: cfg.docpath,
         domain:  cfg.apidomain
     });
@@ -100,11 +101,12 @@ if (cluster.isWorker) {
             return 1;
         }
         return 0;
-    });
-
-    app.service.docdb = ldb;
+    }); 
     app.service.wdb = wdb;
     app.service.ndb = ndb;
+    */
+
+    app.service.docdb = ldb;
     app.service.docpath = cfg.docpath;
     app.service.imagePath = __dirname + '/image';
     app.service.funcs = funcs;
