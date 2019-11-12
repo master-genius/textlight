@@ -148,13 +148,6 @@ window.onload = async function() {
   document.getElementById('search-kwd').value = wo.get('doc-home-kwd');
   await getCount();
   docList();
-
-  let si = await getSiteInfo();
-  if (si) {
-    document.getElementById('sitename').innerHTML = si.sitename;
-    document.getElementById('sitename').cite = location.host;
-  }
-  getSideInfo();
   getTags();
 };
 
