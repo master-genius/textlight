@@ -13,7 +13,8 @@ class image {
         try {
             fs.accessSync(imgfile, fs.constants.F_OK);
         } catch (err) {
-            c.res.status(404);
+            console.log(err);
+            c.status(404);
             return ;
         }
     
