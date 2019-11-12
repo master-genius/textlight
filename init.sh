@@ -1,6 +1,8 @@
 #!/bin/bash
 
-if [ ! -d "self" ] ; then
+cd $(dirname "$0")
+
+if [ ! -d "config" ] ; then
     mkdir config
 fi
 
@@ -41,19 +43,19 @@ if [ ! -a "config/dblock" ] ; then
         echo "数据库初始化失败，请检查数据库配置等情况"
         exit 1
     fi
+
+    echo '创建数据库连接配置文件···'
+    DBCFG="module.exports = {\n
+        host : '$DBHOST',\n
+        port : 5432,\n
+        user : '$DBUSER',\n
+        database : '$DBNAME',\n
+        password : '$DBPASS',\n
+        max: 8,\n
+    };"
+
+    echo -e $DBCFG > config/dbconfig.js
 fi
-
-echo '创建数据库连接配置文件···'
-DBCFG="module.exports = {\n
-    host : '$DBHOST',\n
-    port : 5432,\n
-    user : '$DBUSER',\n
-    database : '$DBNAME',\n
-    password : '$DBPASS',\n
-    max: 8,\n
-};"
-
-echo -e $DBCFG > config/dbconfig.js
 
 if [ ! -a "config/config.js" ] ; then
     cp cfg-example/config-example.js config/config.js
