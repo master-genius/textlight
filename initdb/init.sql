@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS admin(id varchar(40) primary key default '', username varchar(32) not null default '', passwd varchar(255) not null default '', email varchar(50) not null default '', role varchar(16) not null default 'editor', login_ip varchar(100) not null default '', salt varchar(16) not null default '');
+CREATE TABLE IF NOT EXISTS admin(id varchar(40) primary key default '', username varchar(32) not null default '', passwd varchar(255) not null default '', email varchar(50) not null default '', role varchar(16) not null default 'editor', login_ip varchar(100) not null default '', salt varchar(16) not null default '', forbid smallint not null default 0);
 
 create index on admin using hash(username);
 

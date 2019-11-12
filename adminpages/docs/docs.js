@@ -146,7 +146,7 @@ function initEditor (html = '') {
     for (var i=0; i< files.length; i++) {
       let postdata = new FormData();
       postdata.append('image', files[i]);
-
+      _dm.loading();
       userApiCall('/image/', {
         method : 'POST',
         body : postdata
@@ -160,6 +160,9 @@ function initEditor (html = '') {
       })
       .catch (err => {
         console.log(err);
+        sysnotify(err.message, 'err');
+      }).finally(() => {
+        _dm.unloading();
       });
     }
   }

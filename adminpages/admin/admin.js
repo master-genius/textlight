@@ -19,6 +19,7 @@ function adminTemp(d, u) {
     <p>用户名：${d.username}</p>
     <p>角色：${d.role}</p>
     <p>邮箱：${d.email}</p>
+    <p>登录：${d.forbid ? '拒绝' : '允许'}</p>
     <p>
       ${op}
     </p>
@@ -127,7 +128,10 @@ function showEditAdmin(username) {
         <label>邮箱</label>
         <input type="text" value="${u.email}" oninput="cacheEditAdmin(this, 'email');">
 
+        <input type="checkbox" value="1" ${u.forbid ? 'checked' : ''} onchange="cacheEditAdmin(this, 'forbid');">禁止登录<br><br>
+
         <input type="submit" class="button hollow secondary" value="设置" onclick="updateAdmin(this, '${u.id}');">
+        
       </form>
     </div>
     <div class="cell small-1 medium-2 large-3"></div>
@@ -141,6 +145,8 @@ function cacheEditAdmin(t, k) {
     _saveAdmin.email = t.value;
   } else if (k === 'role') {
     _saveAdmin.role = t.options[t.selectedIndex].value;
+  } else if (k === 'forbid') {
+    _saveAdmin.forbid = t.checked ? 1 : 0;
   }
 }
 

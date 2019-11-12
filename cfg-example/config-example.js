@@ -17,6 +17,22 @@ module.exports = {
   //会话有效期，秒
   expires : 18000,
 
+  //服务选项
+
+  debug: true,
+
+  maxConn: 500,
+
+  maxIPCache: 100000,
+
+  peerTime: 3,
+
+  maxIPRequest: 80,
+
+  bodyMaxSize: 5000000,
+
+  useLimit: true,
+
   //是否启用日志
   logger : false,
   loggerRoutes : [

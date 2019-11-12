@@ -65,6 +65,11 @@ class adminlogin {
       return ;
     }
 
+    if (u.forbid) {
+      c.res.body = c.service.api.ret('EPERMDENY', '禁止登录');
+      return ;
+    }
+
     if (c.service.usePassCallback 
       && !c.service.passCallback(c.service.permsource, d.permsource))
     {

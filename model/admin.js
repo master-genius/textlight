@@ -38,7 +38,7 @@ admin.prototype.get = async function (username) {
 };
 
 admin.prototype.list = async function () {
-  let sql = 'SELECT id,username,email,role FROM admin';
+  let sql = 'SELECT id,username,email,role,forbid FROM admin';
   let r = await this.db.query(sql);
   return r.rows;
 };

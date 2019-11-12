@@ -23,4 +23,18 @@ module.exports = {
         '/',
     ],
     loggerCacheCount: 50,
+
+    debug: true,
+
+    maxConn: 500,
+
+    maxIPCache: 100000,
+
+    peerTime: 3,
+
+    maxIPRequest: 80,
+
+    bodyMaxSize: 5000000,
+
+    useLimit: true,
 };
