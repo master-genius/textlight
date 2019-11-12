@@ -35,6 +35,12 @@ var app = new titbit ({
   loadInfoFile : '/tmp/loadinfo.log'
 });
 
+try {
+  fs.accessSync('servnotify', fs.constants.F_OK);
+} catch (err) {
+  fs.mkdirSync('servnotify');
+}
+
 if (cluster.isMaster) {
   fs.watch('./servnotify', (evt, name) => {
     if (name === 'stop-server') {
@@ -114,11 +120,6 @@ if (cluster.isWorker) {
     app.service.theme.load();
   } catch (err) {
     console.log(err);
-  }
-  try {
-    fs.accessSync('servnotify', fs.constants.F_OK);
-  } catch (err) {
-    fs.mkdirSync('servnotify');
   }
 
   fs.watch('./servnotify', (evt, name) => {

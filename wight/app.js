@@ -25,6 +25,12 @@ var app = new titbit({
     bodyMaxSize: 1000000,
 });
 
+try {
+    fs.accessSync('servnotify', fs.constants.F_OK);
+} catch (err) {
+    fs.mkdirSync('servnotify');
+}
+
 if (cluster.isMaster) {
     fs.watch('./servnotify', (evt, name) => {
         if (name === 'stop-server') {
@@ -116,11 +122,6 @@ if (cluster.isWorker) {
 }
 
 if (cluster.isWorker) {
-    try {
-        fs.accessSync('servnotify', fs.constants.F_OK);
-    } catch (err) {
-        fs.mkdirSync('servnotify');
-    }
     fs.watch('./servnotify', (evt, name) => {
         if (name === 'reload-data') {
             ldb.init();
