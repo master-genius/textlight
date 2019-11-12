@@ -7,5 +7,6 @@
 /wight/log/*.log
 /sitedata/log/*.log
 /sitedata/image/*
+/sitedata/box/*
 /wight/servnotify/*
 /servnotify/*
