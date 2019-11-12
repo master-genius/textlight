@@ -3,6 +3,10 @@
 cd $(dirname "$0")
 cd ../wight
 
-date > watcher/stop-server
+if [ ! -d "servnotify" ] ; then
+    mkdir servnotify
+fi
+
+date > servnotify/stop-server
 
 reset

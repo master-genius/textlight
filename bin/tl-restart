@@ -3,6 +3,10 @@
 cd $(dirname "$0")
 cd ..
 
-date > watcher/restart-server
+if [ ! -d "servnotify" ] ; then
+    mkdir servnotify
+fi
+
+date > servnotify/restart-server
 
 reset

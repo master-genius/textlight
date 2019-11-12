@@ -36,7 +36,7 @@ var app = new titbit ({
 });
 
 if (cluster.isMaster) {
-  fs.watch('./watcher', (evt, name) => {
+  fs.watch('./servnotify', (evt, name) => {
     if (name === 'stop-server') {
       process.kill(0, 'SIGTERM');
     }

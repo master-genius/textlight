@@ -2,4 +2,10 @@
 
 cd $(dirname "$0")
 cd ../wight
-date > watcher/reload-data
+
+if [ ! -d "servnotify" ] ; then
+    mkdir servnotify
+fi
+
+
+date > servnotify/reload-data
