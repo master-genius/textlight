@@ -89,8 +89,8 @@ if (cluster.isWorker) {
 
   app.service.siteinfo = new siteinfo({
     path : __dirname + '/siteinfo',
-    watchFile : __dirname + '/watcher/reload-siteinfo',
-    watchTheme :  __dirname + '/watcher/change-theme',
+    watchFile : __dirname + '/servnotify/reload-siteinfo',
+    watchTheme :  __dirname + '/servnotify/change-theme',
     themedir : __dirname + '/themes'
   });
   app.service.siteinfo.init();
