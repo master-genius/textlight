@@ -81,7 +81,7 @@ if [ ! -f "config/dblock" ] ; then
     echo -e $DBCFG > config/dbconfig.js
 fi
 
-if [ ! -a "config/config.js" ] ; then
+if [ ! -f "config/config.js" ] ; then
     cp cfg-example/config-example.js config/config.js
 fi
 
