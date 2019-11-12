@@ -9,16 +9,7 @@ class image {
     }
 
     async get (c) {
-        console.log('image');
         let imgfile = `${c.service.imagePath}/${c.param.starPath}`;
-        try {
-            fs.accessSync(imgfile, fs.constants.F_OK);
-        } catch (err) {
-            console.log(err);
-            c.status(404);
-            return ;
-        }
-    
         c.setHeader('Cache-control', 'public, max-age=86400');
         c.res.encoding = 'binary';
     

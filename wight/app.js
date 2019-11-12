@@ -105,6 +105,7 @@ if (cluster.isWorker) {
     app.service.crypto = crypto;
     app.service.hcli = gohttp;
     app.service.domain = cfg.domain;
+    app.service.apidomain = cfg.apidomain;
 
     var tld = new titloader({
         appPath : __dirname
