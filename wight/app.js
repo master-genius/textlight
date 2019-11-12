@@ -116,7 +116,7 @@ if (cluster.isWorker) {
 }
 
 if (cluster.isWorker) {
-    fs.watch('./watcher', (evt, name) => {
+    fs.watch('./servnotify', (evt, name) => {
         if (name === 'reload-data') {
             ldb.init();
             ldb.initLecture();
