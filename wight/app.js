@@ -51,10 +51,10 @@ if (cluster.isWorker) {
         _apikey.createTime = Date.now();
     };
     
-    makeApiKey();
+    /* makeApiKey();
     setInterval(() => {
         makeApiKey();
-    }, 3600000);
+    }, 3600000); */
 
     app.router.get('/apikey', async c => {
         c.res.body = _apikey;
@@ -189,7 +189,7 @@ if (cluster.isWorker) {
                 };
             }
         } catch (err) {
-        c.res.body = '';
+            c.res.body = '';
         }
     });
 

@@ -80,7 +80,7 @@ class page {
         <div class="container">
           <div class="row shadowed" style="padding:0.5rem;line-height:3.9rem;margin-bottom:1.1rem;">
             <div class="col-sm-2 col-md-1 col-lg-1">
-            <img src="/mapi/image/logo.png" style="max-width:3.9rem;height:auto;">
+            <img src="/m/image/logo.png" style="max-width:3.9rem;height:auto;">
             </div>
             <div class="col-sm-10 col-md-11 col-lg-6">
               <h4 style="color:#4a4a4f;">${this.si.topinfo}</h4>

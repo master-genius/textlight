@@ -1,6 +1,6 @@
-  CPU Loadavg  1m: 0.94  5m: 0.67  15m: 0.44
+  CPU Loadavg  1m: 1.27  5m: 0.80  15m: 0.58
   PID     CPU     MEM, HEAP, HEAPUSED   CONN
-  6130      0.00%     41.7, 7.9,6.0M     0
-  6131      0.00%     41.8, 7.4,6.2M     0
+  6130      0.00%     41.7, 7.9,5.9M     0
+  6131      0.00%     41.9, 7.4,6.1M     0
   Master PID: 6120
   Listen localhost:2021

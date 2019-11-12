@@ -207,7 +207,7 @@ class loaddoc {
     if (imgsrc[0] == '/') {
       imgsrc = imgsrc.substring(1);
     }
-    realsrc = this.domain + '/mapi/localimage/' + pkgdir + '/' + imgsrc;
+    realsrc = this.domain + '/m/localimage/' + pkgdir + '/' + imgsrc;
     if (this.imgpre.length > 0) {
       realsrc += '?pre=' + this.imgpre;
     }
@@ -458,7 +458,7 @@ class loaddoc {
       if (!lecdata.image) {
           lecdata.image = '';
       } else {
-          lecdata.image = this.domain + '/mapi/localimage/' + lecdata.image;
+          lecdata.image = this.domain + '/m/localimage/' + lecdata.image;
       }
       
       let lecobj = {
