@@ -1,7 +1,14 @@
 var _lecList = [];
 
 function searchLec (t) {
-
+  let rg = new RegExp(t.value, 'i');
+  let tmplist = [];
+  for (let i=0; i < _lecList.length; i++) {
+    if (rg.test(_lecList[i].name) || rg.test(_lecList[i].description)) {
+      tmplist.push(_lecList[i]);
+    }
+  }
+  showLectureList(tmplist);
 }
 
 function getLecList () {

@@ -127,9 +127,11 @@ async function getTags () {
     if (d.status === 'OK') {
       let td = document.getElementById('doc-tags');
       var ht = '';
-      let tags = JSON.parse(d.data);
+      let tags = d.data.split(',').filter(p=>p.length > 0);
+      let tmp = '';
       for (let i=0; i< tags.length; i++) {
-        ht += `<div class="card"><a href="javascript:searchClickTag('${tags[i]}');" style="color:#bc5920;">${tags[i]}</a></div>`;
+        tmp = tags[i].trim();
+        ht += `<div class="card"><a href="javascript:searchClickTag('${tmp}');" style="color:#bc5920;">${tmp}</a></div>`;
       }
       td.innerHTML = ht;
     }

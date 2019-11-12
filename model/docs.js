@@ -24,7 +24,7 @@ docs.prototype.parseCond = function (args) {
 
   if (args.pagesize !== undefined && !isNaN(args.pagesize)) {
     pagesize = parseInt(args.pagesize);
-    if (pagesize <= 0 || pagesize > 50) {
+    if (pagesize <= 0 || pagesize > 30) {
       pagesize = 12;
     }
   }

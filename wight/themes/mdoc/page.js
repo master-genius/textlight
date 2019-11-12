@@ -78,19 +78,23 @@ class page {
       </head>
       <body>
         <div class="container">
-          <div class="row shadowed" style="line-height:3.5rem;text-align:center;padding:0.5rem;margin-bottom:0.8rem;">
-            <div class="col-sm-12 col-md-4 col-lg-3">
-              <a href="/">
-              <img src="/mapi/image/logo.png" style="max-width:5.8rem;height:auto;">
-              </a>
+          <div class="row shadowed" style="padding:0.5rem;line-height:3.9rem;margin-bottom:1.1rem;">
+            <div class="col-sm-2 col-md-1 col-lg-1">
+            <img src="/mapi/image/logo.png" style="max-width:3.9rem;height:auto;">
             </div>
-            <div class="col-sm-12 col-md-8 col-lg-9">
-              <h3 style="color:#4a4a4f;">${this.si.topinfo}</h3>
+            <div class="col-sm-10 col-md-11 col-lg-6">
+              <h4 style="color:#4a4a4f;">${this.si.topinfo}</h4>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-5">
+              <header>
+                <a href="/" class="button">首页</a>
+                <a href="/lecture-list" class="button">教程</a>
+              </header>
             </div>
           </div>
         </div>
         
-        <div class="container" id="__main__" style="margin-top:0.5rem;">
+        <div class="container" id="__main__" style="margin-top:0.6rem;">
           ${p.main}
         </div>
         <br>

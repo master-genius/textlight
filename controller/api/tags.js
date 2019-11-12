@@ -1,7 +1,7 @@
 class tags {
   constructor () {
     this.timestamp = 0;
-    this.tagList = [];
+    this.tagList = '';
   }
 
   async getTags(path, funcs) {
@@ -12,14 +12,14 @@ class tags {
       this.tagList = await funcs.readFile(path);
       this.timestamp = Date.now();
     } catch (err) {
-      this.tagList = [];
+      this.tagList = '';
       this.timestamp = 0;
     }
     return this.tagList;
   }
 
   async list (c) {
-    let tlist = await this.getTags(c.service.sitedata+'/tags.json', 
+    let tlist = await this.getTags(c.service.sitedata+'/tags.txt', 
                     c.service.funcs);
     c.res.body = c.service.api.ret(0, tlist);
   }
