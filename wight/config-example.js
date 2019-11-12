@@ -15,4 +15,12 @@ module.exports = {
         theme : 'mdoc'
     },
     theme : 'mdoc',
+
+    logger: false,
+    loggerRoutes : [
+        '/mapi/query/*',
+        '/:name',
+        '/',
+    ],
+    loggerCacheCount: 50,
 };

@@ -35,10 +35,10 @@ class logger {
 
   cacheLog (c, startTime) {
     if (this.routes !== '*' && this.routes.indexOf(c.routepath) < 0) {
-      console.log(c.routepath);
+      //console.log(c.routepath);
       return ;
     }
-    let logtext = `${c.method} | ${c.url.href} | ${c.headers['user-agent']} | ${c.status()} | ${startTime} | ${c.ip}`;
+    let logtext = `${c.method} | ${c.url.href} | ${c.headers['user-agent']} | ${c.status()} | ${startTime} | ${c.ip} | ${c.headers['referer'] || '--'}`;
     this.logcache.push(logtext);
     var flag = 'a+';
     if (this.logcache.length >= this.cacheCount) {

@@ -9,7 +9,7 @@ const funcs = require('../functions');
 const fs = require('fs');
 const cluster = require('cluster');
 const crypto = require('crypto');
-const cfg = require('./config');
+const cfg = require('./config/config.js');
 const gohttp = require('gohttp');
 const theme = require('../theme');
 const api = require('../lib/api');
@@ -209,6 +209,21 @@ if (cluster.isWorker) {
     app.get('/', async c => {
         c.res.body = c.service.theme.find('home');
     }, '@page-static');
+}
+
+if (cluster.isWorker) {
+    if (cfg.logger) {
+        try {
+          let logger = require('./middleware/log');
+          let lgg = new logger({
+            routes: cfg.loggerRoutes,
+            cache : cfg.loggerCacheCount
+          });
+          app.use(lgg.middleware.bind(lgg));
+        } catch (err){
+          console.log(err);
+        }
+    }
 }
 
 if (process.argv.indexOf('-d') > 0) {
