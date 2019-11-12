@@ -17,7 +17,7 @@ fi
 
 echo '建立站点文件···'
 SITEF="footer copyright sitename title"
-for f in SITEF ; do
+for f in $SITEF ; do
     if [ ! -f "$f" ] ; then
         touch sitedata/box/siteinfo/$f
         if [ $f = "title" ] ; then
