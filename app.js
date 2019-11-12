@@ -60,7 +60,12 @@ if (cluster.isWorker) {
   app.service.adminkey = cfg.adminkey;
   app.service.user = usertoken;
 
-  app.service.imagepath = __dirname + '/../images';
+  app.service.imagepath = __dirname + '/sitedata/image';
+  try {
+    fs.accessSync(app.service.imagepath, fs.constants.F_OK);
+  } catch (err) {
+    fs.mkdirSync(app.service.imagepath);
+  }
   app.service.funcs = funcs;
 
   app.service.siteimgpath = __dirname + '/images';

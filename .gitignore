@@ -1,10 +1,11 @@
 /node_modules/
 /tmp/
 /loadinfo.log
-/self/
+/data/
 /config/
 /wight/config/
 /wight/log/*.log
 /sitedata/log/*.log
+/sitedata/image/*
 /wight/servnotify/*
 /servnotify/*
