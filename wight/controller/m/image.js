@@ -43,6 +43,7 @@ class image {
             };
             
         } catch (err) {
+            console.log(err);
             c.status(404);
         }
     }
