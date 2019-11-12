@@ -228,7 +228,6 @@ if (cluster.isWorker) {
 
 if (process.argv.indexOf('-d') > 0) {
     app.config.daemon = true;
-    app.config.showLoadInfo = true;
 }
 
 var host = 'localhost';

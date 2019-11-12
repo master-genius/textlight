@@ -1,4 +1,4 @@
-  CPU Loadavg  1m: 0.77  5m: 0.60  15m: 0.40
+  CPU Loadavg  1m: 0.94  5m: 0.67  15m: 0.44
   PID     CPU     MEM, HEAP, HEAPUSED   CONN
   6130      0.00%     41.7, 7.9,6.0M     0
   6131      0.00%     41.8, 7.4,6.2M     0
