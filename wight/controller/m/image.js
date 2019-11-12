@@ -9,6 +9,7 @@ class image {
     }
 
     async get (c) {
+        console.log('image');
         let imgfile = `${c.service.imagePath}/${c.param.starPath}`;
         try {
             fs.accessSync(imgfile, fs.constants.F_OK);
