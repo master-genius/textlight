@@ -10,7 +10,7 @@ DBOK=
 DBHOST='127.0.0.1'
 
 initDbSql () {
-    if [ ! -f "initdb/dblock" ] ; then
+    if [ ! -f "config/dblock" ] ; then
         echo '正在初始化数据库···（init database···）'
         psql -U "$DBUSER" -d "$DBNAME" < initdb/init.sql && echo 'ok' > config/dblock && DBOK='ok'
     else

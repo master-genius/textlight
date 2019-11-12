@@ -1,6 +1,6 @@
 const funcs = require('./functions');
 const pg = require('pg');
-const dbcfg = require('./self/dbconfig');
+const dbcfg = require('./config/dbconfig');
 const admin = require('./model/admin');
 
 var pgdb = new pg.Pool(dbcfg);
