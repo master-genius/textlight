@@ -6,4 +6,5 @@
 /wight/config/
 /wight/log/*.log
 /sitedata/log/*.log
-
+/wight/servnotify/*
+/servnotify/*

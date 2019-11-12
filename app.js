@@ -115,8 +115,13 @@ if (cluster.isWorker) {
   } catch (err) {
     console.log(err);
   }
+  try {
+    fs.accessSync('servnotify', fs.constants.F_OK);
+  } catch (err) {
+    fs.mkdirSync('servnotify');
+  }
 
-  fs.watch('./watcher', (evt, name) => {
+  fs.watch('./servnotify', (evt, name) => {
     if (name === 'reload-siteinfo') {
       app.service.siteinfo.reload();
       adminpage.setinfo({

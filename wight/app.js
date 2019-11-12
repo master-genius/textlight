@@ -116,6 +116,11 @@ if (cluster.isWorker) {
 }
 
 if (cluster.isWorker) {
+    try {
+        fs.accessSync('servnotify', fs.constants.F_OK);
+    } catch (err) {
+        fs.mkdirSync('servnotify');
+    }
     fs.watch('./servnotify', (evt, name) => {
         if (name === 'reload-data') {
             ldb.init();
