@@ -41,12 +41,19 @@ try {
   fs.mkdirSync('servnotify');
 }
 
+var _imagepath = __dirname + '/sitedata/image';
+
 if (cluster.isMaster) {
   fs.watch('./servnotify', (evt, name) => {
     if (name === 'stop-server') {
       process.kill(0, 'SIGTERM');
     }
   });
+  try {
+    fs.accessSync(_imagepath, fs.constants.F_OK);
+  } catch (err) {
+    fs.mkdirSync(_imagepath);
+  }
 }
 
 if (cluster.isWorker) {
@@ -60,12 +67,7 @@ if (cluster.isWorker) {
   app.service.adminkey = cfg.adminkey;
   app.service.user = usertoken;
 
-  app.service.imagepath = __dirname + '/sitedata/image';
-  try {
-    fs.accessSync(app.service.imagepath, fs.constants.F_OK);
-  } catch (err) {
-    fs.mkdirSync(app.service.imagepath);
-  }
+  app.service.imagepath = _imagepath;
   app.service.funcs = funcs;
 
   app.service.siteimgpath = __dirname + '/images';
