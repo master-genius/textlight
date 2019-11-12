@@ -4,3 +4,6 @@
 /self/
 /config/
 /wight/config/
+/wight/log/*.log
+/sitedata/log/*.log
+

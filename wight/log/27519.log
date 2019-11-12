@@ -1,5 +1,0 @@
-GET | /show?id=linux/linux-system/ch02-release | Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0 | 200 | 1573538895117 | 127.0.0.1
-GET | /show?id=linux/linux-system/ch01-history | Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0 | 200 | 1573538899005 | 127.0.0.1
-GET | /show?id=linux/linux-system/ch09-user-group | Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0 | 200 | 1573538905207 | 127.0.0.1
-GET | /show?id=linux/linux-system/ch11-install-software | Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0 | 200 | 1573538908794 | 127.0.0.1
-GET | /show?id=linux/linux-system/ch15-process | Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0 | 200 | 1573538939200 | 127.0.0.1
