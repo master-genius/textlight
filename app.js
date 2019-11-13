@@ -279,7 +279,7 @@ if (cluster.isWorker) {
       c.setHeader('cache-control', 'public,max-age=86400');
       c.res.encoding = encoding;
       c.res.body = await funcs.readFile(
-          `${c.service.theme.path}${c.service.siteinfo.info.theme}/${c.param.starPath}`, encoding);
+          `${c.service.theme.path}/${c.service.siteinfo.info.theme}/${c.param.starPath}`, encoding);
       _themeStaticCache[c.param.starPath] = c.res.body;
     } catch (err) {
       console.log(err);
