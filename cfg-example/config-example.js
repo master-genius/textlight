@@ -46,7 +46,7 @@ module.exports = {
   loggerCacheCount: 50,
 
   useDownload : true,
-  downloadPath: __dirname + '/../../download',
+  downloadPath: __dirname + '/../sitedata/download',
   downloadMax: 2,
   
   /**
