@@ -31,8 +31,33 @@ var app = new titbit ({
   maxConn : 300,
   maxIPCache: 100000,
   maxIPRequest: 80,
-  peerTime: 3,
+  peerTime: 1,
   loadInfoFile : '/tmp/loadinfo.log'
+});
+
+//set options
+var options = {
+  debug : 'boolean',
+  bodyMaxSize : 'number',
+  useLimit: 'boolean',
+  maxConn : 'number',
+  maxIPCache: 'number',
+  peerTime: 'number',
+};
+
+for (let k in options) {
+  if (cfg[k] !== undefined && typeof cfg[k] === options[k]) {
+    app.config[k] = cfg[k];
+  }
+}
+//end options
+
+//conn
+app.on('connection', (sock) => {
+  app.rundata.conn += 1;
+  sock.on('close', () => {
+    app.rundata.conn -= 1;
+  });
 });
 
 try {

@@ -25,13 +25,13 @@ module.exports = {
 
   maxIPCache: 100000,
 
-  peerTime: 3,
+  peerTime: 1,
 
-  maxIPRequest: 80,
+  maxIPRequest: 30,
 
   bodyMaxSize: 5000000,
 
-  useLimit: true,
+  useLimit: false,
 
   //路由前缀分组，设置后，则需要在每个路径前都要加上此前缀
   pre : '',

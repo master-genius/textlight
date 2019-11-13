@@ -25,6 +25,24 @@ var app = new titbit({
     bodyMaxSize: 1000000,
 });
 
+//set options
+var options = {
+  debug : 'boolean',
+  bodyMaxSize : 'number',
+  useLimit: 'boolean',
+  maxConn : 'number',
+  maxIPCache: 'number',
+  peerTime: 'number',
+};
+
+for (let k in options) {
+  if (cfg[k] !== undefined && typeof cfg[k] === options[k]) {
+    app.config[k] = cfg[k];
+  }
+}
+//end options
+  
+
 try {
     fs.accessSync('servnotify', fs.constants.F_OK);
 } catch (err) {
