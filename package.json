@@ -11,7 +11,7 @@
     "marked": "^0.7.0",
     "pg": "^7.12.1",
     "titbit": "^4.2.3",
-    "titbit-loader": "^1.2.4"
+    "titbit-loader": "^1.3.2"
   },
   "devDependencies": {},
   "scripts": {

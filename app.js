@@ -120,6 +120,21 @@ if (cluster.isWorker) {
     loadModel: false,
   });
   tb.init(app);
+  //如果存在dev则加载用户开发的模块
+  try {
+    fs.accessSync('./dev', fs.constants.F_OK);
+    let tbdev = new tbload({
+      loadModel: true,
+      appPath: './dev',
+      mdb : _pgdb,
+      pre : '@dev'
+    });
+    tbdev.init(app);
+    //console.log(app.router.routeTable());
+    //console.log(app.router.apiGroup);
+  } catch (err) {
+    console.log(err);
+  }
 
   app.service.siteinfo = new siteinfo({
     path : __dirname + '/sitedata/box/siteinfo',
