@@ -21,6 +21,7 @@ class siteinfo {
     try {
       this.info.title = fs.readFileSync(`${this.path}/title`, {encoding:'utf8'});
       this.info.theme = fs.readFileSync(`${this.path}/theme`, {encoding:'utf8'});
+      this.info.theme = this.info.theme.trim();
       this.info.sitename = fs.readFileSync(`${this.path}/sitename`, {encoding:'utf8'});
       this.info.footer = fs.readFileSync(`${this.path}/footer`, {encoding:'utf8'});
       this.info.copyright = fs.readFileSync(`${this.path}/copyright`, {encoding:'utf8'});
