@@ -133,7 +133,7 @@ if (cluster.isWorker) {
     //console.log(app.router.routeTable());
     //console.log(app.router.apiGroup);
   } catch (err) {
-    console.log(err);
+    //console.log(err);
   }
 
   app.service.siteinfo = new siteinfo({
