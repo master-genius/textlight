@@ -30,7 +30,7 @@ for f in $SITEF ; do
         elif [ $f = "copyright" ] ; then
             echo '&copy; <a href="https://www.w3xm.cn" target="_blank">道简网络科技</a>' > $SITEDIR/siteinfo/$f
         elif [ $f = "theme" ] ; then
-            echo 'default' > $SITEDIR/siteinfo/$f
+            echo -n 'default' > $SITEDIR/siteinfo/$f
         fi
     fi
 done
