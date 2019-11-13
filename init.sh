@@ -13,25 +13,24 @@ if [ ! -d "$SITEDIR" ] ; then
     mkdir $SITEDIR
 fi
 
-if [ ! -d "$SITEDIR/box/siteinfo" ] ; then
-    mkdir -p $SITEDIR/box/siteinfo
-fi
-
-if [ ! -d "$SITEDIR/image" ] ; then
-    mkdir -p $SITEDIR/image
-fi
+SITEDLIST="download log image siteinfo"
+for d in $SITEDLIST ; do
+    if [ ! -d "$SITEDIR/$d" ] ; then
+        mkdir $SITEDIR/$d
+    fi
+done
 
 echo '建立站点文件···'
 SITEF="footer copyright sitename title theme"
 for f in $SITEF ; do
     if [ ! -f "$f" ] ; then
-        touch $SITEDIR/box/siteinfo/$f
+        touch $SITEDIR/siteinfo/$f
         if [ $f = "title" ] ; then
-            echo "TextLight" > $SITEDIR/box/siteinfo/$f
+            echo "TextLight" > $SITEDIR/siteinfo/$f
         elif [ $f = "copyright" ] ; then
-            echo '&copy; <a href="https://www.w3xm.cn" target="_blank">道简网络科技</a>' > $SITEDIR/box/siteinfo/$f
+            echo '&copy; <a href="https://www.w3xm.cn" target="_blank">道简网络科技</a>' > $SITEDIR/siteinfo/$f
         elif [ $f = "theme" ] ; then
-            echo 'default' > $SITEDIR/box/siteinfo/$f
+            echo 'default' > $SITEDIR/siteinfo/$f
         fi
     fi
 done

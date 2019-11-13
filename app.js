@@ -137,7 +137,7 @@ if (cluster.isWorker) {
   }
 
   app.service.siteinfo = new siteinfo({
-    path : __dirname + '/website/box/siteinfo',
+    path : __dirname + '/website/siteinfo',
     watchFile : __dirname + '/servnotify/reload-siteinfo',
     watchTheme :  __dirname + '/servnotify/change-theme',
     themedir : __dirname + '/themes'

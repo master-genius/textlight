@@ -21,7 +21,7 @@ class logger {
     this.outcount = 0;
     this.cacheCount = 50;
     this.max = 100000;
-    this.logfile = __dirname + '/../sitedata/log/' + process.pid + '.log';
+    this.logfile = __dirname + '/../website/log/' + process.pid + '.log';
 
     if (options.routes !== undefined) {
       this.routes = options.routes;

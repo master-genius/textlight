@@ -5,10 +5,6 @@
 /config/
 /wight/config/
 /wight/log/*.log
-/sitedata/log/*.log
-/sitedata/image/*
-/sitedata/box/*
-/sitedata/download/*
 /wight/servnotify/*
 /servnotify/*
 /dev/*
