@@ -5,3 +5,9 @@
   margin-bottom: 0.25rem;
   padding: 0.45rem;
 }
+
+#content img {
+  position: relative;
+  left:50%;
+  transform: translate(-50%);
+}
