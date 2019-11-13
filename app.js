@@ -116,7 +116,9 @@ if (cluster.isWorker) {
 var _themeStaticCache = {};
 
 if (cluster.isWorker) {
-  let tb = new tbload();
+  let tb = new tbload({
+    loadModel: false,
+  });
   tb.init(app);
 
   app.service.siteinfo = new siteinfo({
@@ -143,7 +145,7 @@ if (cluster.isWorker) {
   adminpage.page40x();
 
   app.service.theme = new theme({
-    path : __dirname + '/themes',
+    path : __dirname + '/' + cfg.themePath,
     name : app.service.siteinfo.info.theme,
     siteinfo : app.service.siteinfo.info,
   });

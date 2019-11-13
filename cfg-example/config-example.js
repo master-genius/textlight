@@ -1,4 +1,7 @@
 module.exports = {
+
+  themePath: 'themes',
+  
   //32长度的字符
   adminkey : 'xiong-an-dao-jian-wang-luo-ke-ji',
   apidomain : 'http://www.d.com',
