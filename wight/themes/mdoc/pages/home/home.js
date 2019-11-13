@@ -43,10 +43,11 @@ async function getCount() {
 }
 
 function fmtDoc(d) {
+  let rr = d.id.split('/');
   return `<div class="card" style="height: 5rem;" title="${d.name}">
     <a href="/show?id=${d.id}" target="_blank">
     <h5 style="color:#4a4a4f;" class="title-inline">${d.name.trim()}</h5>
-    <p style="color:#676869;">@${d.id.split('/')[0]}</p>
+    <p style="color:#676869;">@${rr[0]} ${rr.length > 1 ? rr[1] : ''}</p>
     <p style="color:#676869;">
      ${d.time}
     </p>
@@ -129,7 +130,7 @@ async function getTags () {
     if (d.status === 'OK') {
       let td = document.getElementById('doc-tags');
       var ht = '';
-      let tags = d.data;
+      let tags = d.data.group;
       for (let i=0; i< tags.length; i++) {
         ht += `<div class="card"><a href="javascript:searchClickTag('${tags[i]}');" style="color:#bc5920;padding:0.5rem;">${tags[i]}</a></div>`;
       }

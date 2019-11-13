@@ -7,11 +7,11 @@
     "lib": "lib"
   },
   "dependencies": {
-    "marked": "^0.7.0",
     "gohttp": "^2.0.2",
+    "marked": "^0.7.0",
     "pg": "^7.12.1",
-    "titbit-loader": "^1.1.8",
-    "titbit": "^4.2.2"
+    "titbit": "^4.2.3",
+    "titbit-loader": "^1.1.8"
   },
   "devDependencies": {},
   "scripts": {

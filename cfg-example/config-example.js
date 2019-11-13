@@ -33,6 +33,9 @@ module.exports = {
 
   useLimit: true,
 
+  //路由前缀分组，设置后，则需要在每个路径前都要加上此前缀
+  pre : '',
+
   //是否启用日志
   logger : false,
   loggerRoutes : [
