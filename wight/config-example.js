@@ -6,6 +6,16 @@ module.exports = {
     docpath: process.env.HOME + '/brave/djdoc',
     group: 0,
 
+        //用于从之前项目扩展的功能，设置此选项可以读取_read目录下的文档
+    //对文档编写有要求，必须是按照日期命名的：2019-11-12.md。
+    readpath: '',
+    docread: false,
+
+    //用于从之前项目扩展的功能，可以从_news目录读取文档并且要求文档指定日期
+    newspath: '',
+    docnews: false,
+
+
     siteinfo : {
         title : '深奥的简洁',
         sitename : '',
