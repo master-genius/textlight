@@ -2,30 +2,36 @@
 
 cd $(dirname "$0")
 
+SITEDIR=website
+
 if [ ! -d "config" ] ; then
     mkdir config
 fi
 
 echo '创建站点目录···'
-if [ ! -d "sitedata/box/siteinfo" ] ; then
-    mkdir -p sitedata/box/siteinfo
+if [ ! -d "$SITEDIR" ] ; then
+    mkdir $SITEDIR
 fi
 
-if [ ! -d "sitedata/image" ] ; then
-    mkdir -p sitedata/image
+if [ ! -d "$SITEDIR/box/siteinfo" ] ; then
+    mkdir -p $SITEDIR/box/siteinfo
+fi
+
+if [ ! -d "$SITEDIR/image" ] ; then
+    mkdir -p $SITEDIR/image
 fi
 
 echo '建立站点文件···'
 SITEF="footer copyright sitename title theme"
 for f in $SITEF ; do
     if [ ! -f "$f" ] ; then
-        touch sitedata/box/siteinfo/$f
+        touch $SITEDIR/box/siteinfo/$f
         if [ $f = "title" ] ; then
-            echo "TextLight" > sitedata/box/siteinfo/$f
+            echo "TextLight" > $SITEDIR/box/siteinfo/$f
         elif [ $f = "copyright" ] ; then
-            echo '&copy; <a href="https://www.w3xm.cn" target="_blank">道简网络科技</a>' > sitedata/box/siteinfo/$f
+            echo '&copy; <a href="https://www.w3xm.cn" target="_blank">道简网络科技</a>' > $SITEDIR/box/siteinfo/$f
         elif [ $f = "theme" ] ; then
-            echo 'default' > sitedata/box/siteinfo/$f
+            echo 'default' > $SITEDIR/box/siteinfo/$f
         fi
     fi
 done

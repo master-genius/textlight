@@ -66,7 +66,7 @@ try {
   fs.mkdirSync('servnotify');
 }
 
-var _imagepath = __dirname + '/sitedata/image';
+var _imagepath = __dirname + '/website/image';
 
 if (cluster.isMaster) {
   fs.watch('./servnotify', (evt, name) => {
@@ -96,7 +96,7 @@ if (cluster.isWorker) {
   app.service.funcs = funcs;
 
   app.service.siteimgpath = __dirname + '/images';
-  app.service.sitedata = __dirname + '/sitedata';
+  app.service.sitedata = __dirname + '/website';
   app.service.alog = {};
   app.service.cors = cfg.cors;
   app.service.expires = cfg.expires * 1000;
@@ -137,7 +137,7 @@ if (cluster.isWorker) {
   }
 
   app.service.siteinfo = new siteinfo({
-    path : __dirname + '/sitedata/box/siteinfo',
+    path : __dirname + '/website/box/siteinfo',
     watchFile : __dirname + '/servnotify/reload-siteinfo',
     watchTheme :  __dirname + '/servnotify/change-theme',
     themedir : __dirname + '/themes'
