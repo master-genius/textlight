@@ -54,7 +54,6 @@ class logger {
         if (err) {
           console.log(err);
         } else {
-          console.log(the.count);
           the.count += the.cacheCount;
         }
       });
