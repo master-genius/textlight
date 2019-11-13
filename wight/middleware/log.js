@@ -38,7 +38,7 @@ class logger {
       //console.log(c.routepath);
       return ;
     }
-    let logtext = `${c.method} | ${c.url.href} | ${c.headers['user-agent']} | ${c.status()} | ${startTime} | ${c.ip} | ${c.headers['referer'] || '--'}`;
+    let logtext = `${c.method} | ${decodeURIComponent(c.url.href)} | ${c.headers['user-agent']} | ${c.status()} | ${startTime} | ${c.ip} | ${c.headers['referer'] || '--'}`;
     this.logcache.push(logtext);
     var flag = 'a+';
     if (this.logcache.length >= this.cacheCount) {
