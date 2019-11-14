@@ -129,8 +129,9 @@ async function userApiCall (path, options = {}) {
 
     return apiCall(path, options).then(d => {
         if (typeof d === 'object' && d.status == 'ENOTLOGIN') {
-            location.href = '/adminpage/login';
-            return ;
+          location.href = '/adminpage/login';
+          logout();
+          return ;
         } else {
             let u = JSON.parse(localStorage.getItem('userinfo'));
             let st = parseInt(localStorage.getItem('sessiontime'));
@@ -153,8 +154,8 @@ function sysnotify (data, status = 'ok', timeout = 4500) {
   }
   d.innerHTML = data;
   setTimeout(() => {
-      d.innerHTML = '';
-      d.style.cssText = '';
+    d.innerHTML = '';
+    d.style.cssText = '';
   }, timeout);
 }
 

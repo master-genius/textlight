@@ -105,6 +105,23 @@ class adminlogin {
     });
   }
 
+  //update token
+  /* async update (c) {
+    let u = c.service.user.verifyTokenNoTime(c.query.token, c.service.adminkey);
+    if (u === false || c.ip !== u.ip) {
+      c.res.body = c.service.api.ret('EPERMDENY');
+      return ;
+    }
+
+    let r = await c.service.admin.verifyPasswd(u.username, c.body);
+    if (!r) {
+      c.res.body = c.service.api.ret('EPERMDENY');
+      return ;
+    }
+
+    let token = c.service.user.userToken(u, c.service.adminkey);
+  } */
+
 }
 
 module.exports = adminlogin;
