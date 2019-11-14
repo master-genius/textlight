@@ -7,6 +7,6 @@ if [ ! -d "servnotify" ] ; then
     mkdir servnotify
 fi
 
-date > watcher/restart-server
+date > servnotify/restart-server
 
 reset
