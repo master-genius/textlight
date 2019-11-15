@@ -56,14 +56,14 @@ class localimage {
         }
     }
 
-    __mid () {
+    /* __mid () {
         return [
             {
                 name : 'imagepass',
                 path : ['get'],
             }
         ];
-    }
+    } */
 
 }
 
