@@ -94,35 +94,37 @@ if (cluster.isWorker) {
 
     ldb.init();
     ldb.initLecture();
-    //console.log(ldb.groups);
 
-    /* var wdb = new linuxdoc({
-        docpath: cfg.docpath,
-        domain:  cfg.apidomain
-    });
-    wdb.selfinit(['_read']);
+    if (cfg.docread) {
+        var wdb = new linuxdoc({
+            docpath: cfg.readpath,
+            domain:  cfg.apidomain
+        });
+        wdb.selfinit(['_read']);
+        app.service.wdb = wdb;
+    }
 
-    var ndb = new linuxdoc({
-        docpath : cfg.docpath,
-        domain : cfg.apidomain
-    });
-    ndb.selfinit(['_news']);
-    ndb.kkeys.sort((a, b) => {
-        let ar = a.split('@').filter(p => p.length > 0);
-        let br = b.split('@').filter(p => p.length > 0);
-        if (ar.length < 2 || br.length < 2) {
+    if (cfg.docnews) {
+        var ndb = new linuxdoc({
+            docpath : cfg.newspath,
+            domain : cfg.apidomain
+        });
+        ndb.selfinit(['_news']);
+        ndb.kkeys.sort((a, b) => {
+            let ar = a.split('@').filter(p => p.length > 0);
+            let br = b.split('@').filter(p => p.length > 0);
+            if (ar.length < 2 || br.length < 2) {
+                return 0;
+            }
+            if (ar[1] > br[1]) {
+                return -1;
+            } else if (ar[1] < br[1]) {
+                return 1;
+            }
             return 0;
-        }
-        if (ar[1] > br[1]) {
-            return -1;
-        } else if (ar[1] < br[1]) {
-            return 1;
-        }
-        return 0;
-    }); 
-    app.service.wdb = wdb;
-    app.service.ndb = ndb;
-    */
+        });
+        app.service.ndb = ndb;
+    }
 
     app.service.docdb = ldb;
     app.service.docpath = cfg.docpath;
@@ -132,6 +134,7 @@ if (cluster.isWorker) {
     app.service.hcli = gohttp;
     app.service.domain = cfg.domain;
     app.service.apidomain = cfg.apidomain;
+    app.service.cors = cfg.cors;
 
     var tld = new titloader({
         appPath : __dirname
@@ -236,6 +239,16 @@ if (cluster.isWorker) {
     app.get('/', async c => {
         c.res.body = c.service.theme.find('home');
     }, '@page-static');
+}
+
+if (cluster.isWorker && cfg.cors.length > 0) {
+    try {
+        let corsmid = require('./middleware/cors.js');
+        app.use(corsmid, {group:'/mapi'});
+        app.use(corsmid, {group:'/m'});
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 if (cluster.isWorker) {

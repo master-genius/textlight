@@ -3,12 +3,20 @@ module.exports = async (c, next) => {
         c.headers['referer'] = '';
     }
 
-    if (c.headers['referer'].indexOf('https://servicewechat.com') == 0
-        || c.headers['referer'].indexOf('https://super.w3xm.top') == 0
-        || c.headers['referer'].indexOf('http://localhost:2021') == 0)
-    {
+    var stat = false;
+    
+    for (let i=0; i < c.service.cors.length && i < 5; i++) {
+        if (c.headers['referer'].indexOf(c.service.cors[i]) == 0) {
+            stat = true;
+            break;
+        }
+    }
+
+    if (stat) {
         c.setHeader('Access-control-allow-origin', '*');
-        c.setHeader('Access-control-allow-methods', ['GET','POST','PUT','DELETE','OPTIONS']);
+        c.setHeader('Access-control-allow-methods', 
+            ['GET','POST','PUT','DELETE','OPTIONS']
+        );
         c.setHeader('Access-Control-Allow-Headers', 'content-type');
         await next(c);
     } else {

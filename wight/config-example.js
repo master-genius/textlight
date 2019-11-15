@@ -47,4 +47,8 @@ module.exports = {
     bodyMaxSize: 5000000,
 
     useLimit: true,
+
+    cors : [
+        'https://servicewechat.com'
+    ]
 };
