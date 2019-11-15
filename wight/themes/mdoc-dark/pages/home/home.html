@@ -1,0 +1,37 @@
+<div class="row" style="padding:0.15rem;">
+  <div class="col-md-1 col-lg-1"></div>
+  <div class="col-sm-12 col-md-10 col-lg-8">
+    <div class="row">
+      <div class="col-sm-12 col-md-8 col-lg-9">
+          <form onsubmit="return false;">
+            <input type="text" id="search-kwd" placeholder="关键词"  oninput="listenOrSearch(this);" maxlength="24" onfocus="showClear(this);" onblur="hideClear" style="width:100%;">
+            <div id="clear-search-btn" class="hidden" style="text-align:center;">
+              <a href="javascript:clearSearch();" style="color:#696969;font-size:85%;">
+                清空
+              </a>
+            </div>
+          </form>
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-4">
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-8 col-lg-9">
+        <div class="row" id="doc-list"></div>
+        <div class="row">
+          <div class="col-md-1 col-lg-1"></div>
+          <div class="col-sm-12 col-md-10 col-lg-8" id="pagination"></div>
+          <div class="col-md-1 col-lg-1"></div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-3">
+        <div class="row" id="side-info"></div>
+        <div class="row" id="doc-tags"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-1 col-lg-2"></div>
+</div>
+<div id="goto-top"></div>
+<script src="/theme/js/pagi.js"></script>

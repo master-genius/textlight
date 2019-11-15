@@ -41,7 +41,6 @@ for (let k in options) {
   }
 }
 //end options
-  
 
 try {
     fs.accessSync('servnotify', fs.constants.F_OK);
@@ -80,9 +79,9 @@ if (cluster.isWorker) {
         makeApiKey();
     }, 3600000); */
 
-    app.router.get('/apikey', async c => {
+    /* app.router.get('/apikey', async c => {
         c.res.body = _apikey;
-    });
+    }); */
 }
 
 if (cluster.isWorker) {
@@ -145,23 +144,11 @@ if (cluster.isWorker) {
 }
 
 if (cluster.isWorker) {
-    fs.watch('./servnotify', (evt, name) => {
-        if (name === 'reload-data') {
-            ldb.init();
-            ldb.initLecture();
-        } else if (name === 'restart-server') {
-            process.exit(0);
-        }
-    });
-}
-
-if (cluster.isWorker) {
-
     app.service.siteinfo = cfg.siteinfo;
     try {
         var thm = new theme({
             path : __dirname+'/themes',
-            name : cfg.theme,
+            name : cfg.siteinfo.theme,
             siteinfo : cfg.siteinfo,
         });
         thm.load();
@@ -169,6 +156,24 @@ if (cluster.isWorker) {
     } catch (err){
         console.log(err);
     }
+
+    fs.watch('./servnotify', (evt, name) => {
+        if (name === 'reload-data') {
+            ldb.init();
+            ldb.initLecture();
+        } else if (name === 'restart-server') {
+            process.exit(0);
+        } else if (name === 'change-theme') {
+            fs.readFile('./servnotify/change-theme', {encoding:'utf8'}, (err, data) => {
+                if (!err) {
+                    thm.setTheme(data.trim());
+                }
+            });
+        }
+    });
+}
+
+if (cluster.isWorker) {
 
     var _themeStaticCache = {};
     app.router.get('/theme/*', async c => {
