@@ -5,6 +5,10 @@ module.exports = {
     host : '0.0.0.0',
     docpath: process.env.HOME + '/brave/djdoc',
     group: 0,
+    //分组别名
+    alias : {
+
+    },
     
     siteinfo : {
         title : '深奥的简洁',

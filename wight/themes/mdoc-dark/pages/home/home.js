@@ -44,7 +44,7 @@ async function getCount() {
 
 function fmtDoc(d) {
   let rr = d.id.split('/');
-  return `<div class="card" style="height: 5rem;" title="${d.name}">
+  return `<div class="card" style="min-height: 5.2rem;max-height:7.2rem;" title="${d.name}">
     <a href="/show?id=${d.id}" target="_blank">
     <h5 style="color:#f2f3f9;" class="title-inline">${d.name.trim()}</h5>
     <p style="color:#929395;">@${rr[0]} ${rr.length > 1 ? rr[1] : ''}</p>
@@ -131,8 +131,19 @@ async function getTags () {
       let td = document.getElementById('doc-tags');
       var ht = '';
       let tags = d.data.group;
+      tags.sort((a, b) => {
+        if (a == b) {
+          return 0;
+        }
+        return (a > b ? 1 : -1);
+      });
+      let tmpname = '';
       for (let i=0; i< tags.length; i++) {
-        ht += `<div class="card"><a href="javascript:searchClickTag('${tags[i]}');" style="color:#bc5920;padding:0.5rem;">${tags[i]}</a></div>`;
+        tmpname = tags[i];
+        if (d.data.alias[ tags[i] ] !== undefined) {
+          tmpname = d.data.alias[ tags[i] ];
+        }
+        ht += `<div class="card"><a href="javascript:searchClickTag('${tags[i]}');" style="color:#bc5920;padding:0.5rem;">${tmpname}</a></div>`;
       }
       td.innerHTML = ht;
     }

@@ -120,6 +120,7 @@ if (cluster.isWorker) {
     app.service.domain = cfg.domain;
     app.service.apidomain = cfg.apidomain;
     app.service.cors = cfg.cors;
+    app.service.alias = cfg.alias;
 
     var tld = new titloader({
         appPath : __dirname

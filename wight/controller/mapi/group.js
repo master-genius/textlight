@@ -9,7 +9,8 @@ class group {
         let ind = c.service.docdb.grpLevel;
         c.res.body = c.service.api.ret(0, {
             group : groups,
-            ind : ind
+            ind : ind,
+            alias : c.service.alias
         });
     }
 }
