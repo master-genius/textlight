@@ -84,6 +84,8 @@ if (cluster.isWorker) {
     }); */
 }
 
+var _themeStaticCache = {};
+
 if (cluster.isWorker) {
     var ldb = new linuxdoc({
         docpath: cfg.docpath,
@@ -166,6 +168,7 @@ if (cluster.isWorker) {
         } else if (name === 'change-theme') {
             fs.readFile('./servnotify/change-theme', {encoding:'utf8'}, (err, data) => {
                 if (!err) {
+                    _themeStaticCache = {};
                     thm.setTheme(data.trim());
                 }
             });
@@ -174,8 +177,6 @@ if (cluster.isWorker) {
 }
 
 if (cluster.isWorker) {
-
-    var _themeStaticCache = {};
     app.router.get('/theme/*', async c => {
         var encoding = 'utf8';
         if (c.param.starPath.indexOf('.css') > 0) {
