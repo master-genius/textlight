@@ -96,8 +96,7 @@ class loaddoc {
       let dlist = fs.readdirSync(pdir, {withFileTypes: true});
       let kid = '';
       for (let i=0; i<dlist.length; i++) {
-        if (dlist[i].name[0] == '_' 
-          || dlist[i].name[0] == '.' 
+        if (dlist[i].name[0] == '.' 
           || (deep=0 && dlist[i].name == 'RAEDME.md'))
         {
           continue;

@@ -6,7 +6,7 @@ class news {
 
   async get (c) {
     let id = decodeURIComponent(c.param.starPath);
-    let r = c.service.ndb.getById(id);
+    let r = c.service.docdb.getById(id);
     if (r === null) {
       c.status(404);
       return ;
@@ -31,7 +31,7 @@ class news {
     } */
     cstr = cstr.substring(0, 20);
 
-    let result = c.service.ndb.select(cstr, count, offset, null);
+    let result = c.service.docdb.select(cstr, count, offset, '_news');
 
     c.res.body = result;
   }

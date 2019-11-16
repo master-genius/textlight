@@ -95,25 +95,8 @@ if (cluster.isWorker) {
 
     ldb.init();
     ldb.initLecture();
-
-    if (cfg.docread) {
-        var wdb = new linuxdoc({
-            docpath: cfg.readpath,
-            domain:  cfg.apidomain,
-            imgpre : cfg.readimgpre,
-        });
-        wdb.selfinit(['_read']);
-        app.service.wdb = wdb;
-    }
-
-    if (cfg.docnews) {
-        var ndb = new linuxdoc({
-            docpath : cfg.newspath,
-            domain : cfg.apidomain,
-            imgpre : cfg.newsimgpre,
-        });
-        ndb.selfinit(['_news']);
-        ndb.kkeys.sort((a, b) => {
+    if (ldb.groups['_news']) {
+        ldb.groups['_news'].sort((a, b) => {
             let ar = a.split('@').filter(p => p.length > 0);
             let br = b.split('@').filter(p => p.length > 0);
             if (ar.length < 2 || br.length < 2) {
@@ -126,7 +109,6 @@ if (cluster.isWorker) {
             }
             return 0;
         });
-        app.service.ndb = ndb;
     }
 
     app.service.docdb = ldb;

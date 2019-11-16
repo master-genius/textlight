@@ -20,10 +20,10 @@ class dayread {
       }
     }
 
-    let daylist = c.service.wdb.select(`${year}/${day}`, 0, 0, '_read', true);
+    let daylist = c.service.docdb.select(`${year}/${day}`, 0, 0, '_read', true);
     if (daylist.length == 0) {
-      //let offset = parseInt(Math.random() * c.service.wdb.total);
-      daylist = c.service.wdb.select('.*', 1, c.service.wdb.total-1, '_read', true);
+      let total = c.service.docdb.count('', '_read');
+      daylist = c.service.docdb.select('.*', 1, total-1, '_read', true);
     }
 
     c.res.body = daylist;
