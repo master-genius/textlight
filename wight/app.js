@@ -99,7 +99,8 @@ if (cluster.isWorker) {
     if (cfg.docread) {
         var wdb = new linuxdoc({
             docpath: cfg.readpath,
-            domain:  cfg.apidomain
+            domain:  cfg.apidomain,
+            imgpre : cfg.readimgpre,
         });
         wdb.selfinit(['_read']);
         app.service.wdb = wdb;
@@ -108,7 +109,8 @@ if (cluster.isWorker) {
     if (cfg.docnews) {
         var ndb = new linuxdoc({
             docpath : cfg.newspath,
-            domain : cfg.apidomain
+            domain : cfg.apidomain,
+            imgpre : cfg.newsimgpre,
         });
         ndb.selfinit(['_news']);
         ndb.kkeys.sort((a, b) => {
