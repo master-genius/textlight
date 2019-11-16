@@ -90,7 +90,8 @@ if (cluster.isWorker) {
     var ldb = new linuxdoc({
         docpath: cfg.docpath,
         domain:  cfg.apidomain,
-        grpLevel: cfg.group
+        grpLevel: cfg.group,
+        filter : cfg.filter
     });
 
     ldb.init();

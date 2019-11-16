@@ -9,6 +9,8 @@ module.exports = {
     alias : {
 
     },
+
+    filter : [],
     
     siteinfo : {
         title : '深奥的简洁',

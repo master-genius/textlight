@@ -40,6 +40,9 @@ class loaddoc {
     this.imgpre = ''; 
 
     this.docpath = '';
+
+    this.filter = [];
+
     if (typeof options === 'string') {
       this.docpath = options;
     } else if (typeof options === 'object') {
@@ -51,6 +54,9 @@ class loaddoc {
       }
       if (options.grpLevel) {
         this.grpLevel = options.grpLevel;
+      }
+      if (options.filter) {
+        this.filter = options.filter;
       }
     }
 
@@ -96,6 +102,9 @@ class loaddoc {
       let dlist = fs.readdirSync(pdir, {withFileTypes: true});
       let kid = '';
       for (let i=0; i<dlist.length; i++) {
+        if (this.filter.indexOf(dlist[i].name) >= 0) {
+          continue;
+        }
         if (dlist[i].name[0] == '.' 
           || (deep=0 && dlist[i].name == 'RAEDME.md'))
         {
@@ -165,6 +174,8 @@ class loaddoc {
     }
     if (di.time === 'now') {
       di.time = formatTime(null, true);
+    } else if (pkgdir.indexOf('@') >= 0) {
+      di.time = pkgdir.split('@')[1];
     }
     let kstr = `${di.id}:${di.name == pname ? '' : di.name}:${di.keywords.substring(0, 24)}`;
     this.fileinfo[di.id] = di;
