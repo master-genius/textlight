@@ -132,10 +132,12 @@ async function getTags () {
       var ht = '';
       let tags = d.data.group;
       tags.sort((a, b) => {
-        if (a == b) {
+        let al = a.toLowerCase();
+        let bl = b.toLowerCase();
+        if (al == bl) {
           return 0;
         }
-        return (a > b ? 1 : -1);
+        return (al > bl ? 1 : -1);
       });
       let tmpname = '';
       for (let i=0; i< tags.length; i++) {
