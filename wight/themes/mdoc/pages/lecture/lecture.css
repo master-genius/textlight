@@ -20,8 +20,8 @@ a {
   z-index:1;
   position: fixed;
   left:2%;
-  top: 34%;
-  height: 56%;
+  top: 33%;
+  height: 55%;
   width:22%;
   background-image: linear-gradient(to right, #f9f9f8, #fefefe);
   overflow-y: auto;
