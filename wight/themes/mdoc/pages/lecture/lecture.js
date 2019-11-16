@@ -126,7 +126,7 @@ function showLectureList() {
     var ind = 1;
     for (let k in _lec_map) {
         html += `<div class="lecture-list-ch" id="${k}">
-          <a href="javascript:;" onclick="showCurContent(this);" id="${k}" class="lecture-list-name">
+          <a href="javascript:;" onclick="showCurContent(this);" id="${k}" class="lecture-list-name" title="${_lec_map[k]}">
             ch${ind > 9 ? '' : '0'}${ind}. ${_lec_map[k]}
           </a>
         </div>`;

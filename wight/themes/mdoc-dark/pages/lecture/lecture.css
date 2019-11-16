@@ -15,14 +15,22 @@ a {
   transform: translate(-50%);
 }
 
-.lecture-list {
+.lecture-list-shrink {
+  font-size: 90%;
+  z-index:1;
+  position: fixed;
+  left:2%;
+  top: 33%;
+  height: 56%;
+  width:22%;
+  background-image: linear-gradient(to right, #212223, #414243);
+  overflow-y: auto;
+  overflow-x: hidden;
   white-space: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
 }
 
-.lecture-list a {
-  color: #727375;
+.lecture-list-shrink a {
+  font-size: 90%;
 }
 
 .lecture-list-name {

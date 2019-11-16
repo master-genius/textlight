@@ -15,16 +15,24 @@ a {
   transform: translate(-50%);
 }
 
-.lecture-list {
+.lecture-list-shrink {
+  font-size: 90%;
+  z-index:1;
+  position: fixed;
+  left:2%;
+  top: 34%;
+  height: 56%;
+  width:22%;
+  background-image: linear-gradient(to right, #fafaf2, #ffffff);
+  overflow-y: auto;
+  overflow-x: hidden;
   white-space: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
 }
 
-.lecture-list a {
+.lecture-list-shrink a {
   color: #4a4a4f;
+  font-size: 90%;
 }
-
 .lecture-list-name {
   color: #4a4a4a;
   line-height: 2.5rem;
