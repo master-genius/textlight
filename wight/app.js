@@ -114,7 +114,12 @@ if (cluster.isWorker) {
 
     app.service.docdb = ldb;
     app.service.docpath = cfg.docpath;
-    app.service.imagePath = __dirname + '/image';
+    app.service.imagePath = __dirname + '/images';
+    try {
+        fs.accessSync(app.service.imagePath, fs.constants.F_OK);
+    } catch (err){
+        fs.mkdirSync(app.service.imagePath);
+    }
     app.service.funcs = funcs;
     app.service.crypto = crypto;
     app.service.hcli = gohttp;
