@@ -44,7 +44,8 @@ async function getCount() {
 
 function fmtDoc(d) {
   let rr = d.id.split('/');
-  return `<div class="card" style="min-height: 5.2rem;max-height:7.2rem;" title="${d.name}">
+  let backimg = `background-image:url('/m/localimage/${d.headimg}');background-repeat:no-repeat;text-shadow:0.04rem 0.035rem #a2a3a5;background-size: 50%;background-position:right top;`;
+  return `<div class="card" style="height:7.2rem;${d.headimg.length > 0 ? backimg : ''}" title="${d.name}">
     <a href="/show?id=${d.id}" target="_blank">
     <h5 style="color:#4a4a4f;" class="title-inline">${d.name.trim()}</h5>
     <p style="color:#676869;">@${rr[0]} ${rr.length > 1 ? rr[1] : ''}</p>
