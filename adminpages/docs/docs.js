@@ -328,7 +328,7 @@ window.onload = async function () {
   });
   _total = await docCount();
   let pages = totalPage(_total, _pagesize);
-  _pagi.setpi(1, pages);
+  _pagi.setpi(wo.get('cur-page'), pages);
   if (wo.get('edit-status') === 'on') {
     let id = wo.get('edit-id');
     neDoc(id === 'null' ? null : id);

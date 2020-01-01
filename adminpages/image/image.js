@@ -57,7 +57,7 @@ async function getImages() {
 if (wo.get('img-init') === null) {
   wo.set('img-init', '1');
   wo.set('img-page', '1');
-  wo.set('total-page', '1');
+  wo.set('img-total-page', '1');
 }
 
 function selectAllImages(t) {
