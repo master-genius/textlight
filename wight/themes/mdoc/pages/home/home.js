@@ -25,7 +25,7 @@ function parseArgs () {
   }
 
   if (kwd) {
-    qstr += `&q=${encodeURIComponent(kwd)}`;
+    qstr += `&q=${encodeURIComponent(parseKwd(kwd))}`;
   }
   if (tag) {
     qstr += `&group=${encodeURIComponent(tag)}`;
@@ -186,6 +186,17 @@ function clearSearch() {
   let d = document.getElementById('search-kwd');
   d.value = '';
   searchDoc(d);
+}
+
+function parseKwd(kwd) {
+  let ktmp = '';
+  for(let i=0; i < kwd.length; i++) {
+      ktmp += kwd[i];
+      if (i < kwd.length - 1 && kwd[i+1] > 'z') {
+          ktmp += '.*';
+      }
+  }
+  return ktmp;
 }
 
 window.onscroll = function () {
