@@ -177,7 +177,7 @@ class loaddoc {
     } else if (pkgdir.indexOf('@') >= 0) {
       di.time = pkgdir.split('@')[1];
     }
-    let kstr = `${di.id}:${di.name == pname ? '' : di.name}:${di.keywords.substring(0, 24)}`;
+    let kstr = `${di.id}:${di.name == pname ? '' : di.name}:${di.keywords.substring(0, 64)}`;
     this.fileinfo[di.id] = di;
     this.keyFile[kstr] = di.id; //直接索引
     //第一层目录作为分组

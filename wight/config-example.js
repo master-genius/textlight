@@ -1,16 +1,22 @@
 module.exports = {
     apidomain : 'http://localhost:2021',
-    domain : 'https://super.w3xm.top',
+    domain : 'http://localhost:2021',
     port : 2021,
     host : '0.0.0.0',
     docpath: process.env.HOME + '/brave/djdoc',
+
+    //表示用于分组的目录层级
     group: 0,
+
     //分组别名
     alias : {
 
     },
 
-    filter : [],
+    //不需要加载的目录
+    filter : [
+
+    ],
     
     siteinfo : {
         title : '深奥的简洁',
@@ -40,11 +46,11 @@ module.exports = {
 
     maxIPRequest: 80,
 
-    bodyMaxSize: 5000000,
+    bodyMaxSize: 2000000,
 
     useLimit: true,
 
     cors : [
-        'https://servicewechat.com'
+        //'https://servicewechat.com'
     ]
 };

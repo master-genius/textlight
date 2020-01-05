@@ -25,6 +25,15 @@ var app = new titbit({
     bodyMaxSize: 1000000,
 });
 
+if (cluster.isMaster) {
+    try {
+        fs.accessSync('./config', fs.constants.F_OK);
+    } catch (err) {
+        fs.mkdirSync('./config');
+        fs.copyFileSync('./config-example.js', './config/config.js');
+    }
+}
+
 //set options
 var options = {
   debug : 'boolean',

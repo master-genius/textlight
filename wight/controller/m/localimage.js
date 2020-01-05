@@ -7,6 +7,8 @@ class localimage {
         this.mode = 'restful';
         this.param = '/*';
         this.imageCount = 0;
+        this.cacheSize = 0;
+        this.maxCache = 128000000; // ~ 128M
     }
 
     async get (c) {
@@ -38,11 +40,11 @@ class localimage {
             }
             c.setHeader('content-length', c.res.body.length);
 
-            if (this.imageCount > 600) {
+            if (this.cacheSize >= this.maxCache) {
                 this.imageCache = {};
                 this.imageCount = 0;
             } else {
-                this.imageCount += 1;
+                this.cacheSize += c.res.body.length;
                 this.imageCache[imgfile] = {
                     'content-type' : content_type,
                     data : c.res.body,
