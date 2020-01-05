@@ -21,8 +21,14 @@ module.exports = {
     siteinfo : {
         title : '深奥的简洁',
         sitename : '',
-        copyright: '&copy; 道简网络科技',
-        footer : '',
+        copyright: '',
+        footer : `<div class="row" style="border-top:solid 0.05rem #dfdfdf;color:#4a4c4f;">
+        <div class="col-sm-1 col-md-2 col-lg-3"></div>
+        <div class="col-sm-10 col-md-8 col-lg-6" style="font-size:86%;line-height:2.2rem;">
+            &copy; 道简网络科技
+        </div>
+        <div class="col-sm-1 col-md-2 col-lg-3"></div>
+    </div>`,
         topinfo: '避免一切肤浅，穿透一切复杂',
         theme : 'mdoc'
     },

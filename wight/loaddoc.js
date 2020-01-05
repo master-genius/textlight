@@ -245,7 +245,7 @@ class loaddoc {
   }
 
   setImageStyle (html) {
-    return html.replace(/\<img /ig, '<img style="width:auto;height:auto;max-width:100%;" ');
+    return html.replace(/\<img /ig, '<img lazyload="on" style="width:auto;height:auto;max-width:100%;" ');
   }
 
   getById (id) {
