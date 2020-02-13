@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-sm-12 col-md-12 col-lg-12" style="padding:0.32rem;line-height: 3rem;text-align: center;color:#4a4a4a;">
+    <div style="background-color: #e5e9f1;padding-top:1rem;padding-bottom:1rem;">
+        <h3>
+            <strong>
+                <span id="lecture-name"></span>
+            </strong>
+        </h3>
+    </div>
+  </div>
+</div>
+<div class="row" id="main">
+  <div class="col-lg-3 visually-hidden-sm visually-hidden-md" style="padding:0.9rem;">
+    <div id="lecture-list" class="lecture-list-shrink"></div>
+  </div>
+
+  <div class="col-sm-12 col-md-12 col-lg-7" oncontextmenu="return false;" id="content">
+  </div>
+  <div class="col-lg-1"></div>
+</div>
+
+<div class="row">
+    <div class="hidden-lg">
+        <div class="footer-list-bar">
+            <div onclick="showFooterList(this);" id="footer-list-btn">| | |</div>
+        </div>
+        <div class="footer-lecture-list" id="footer-lecture-list" onclick="hideFooterList();"></div>
+    </div>
+</div>
+<div id="goto-top"></div>

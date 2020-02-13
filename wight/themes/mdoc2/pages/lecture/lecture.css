@@ -1,0 +1,113 @@
+.prev-next-btn {
+  background-color: #e4e8ef;
+  max-width:3.5rem;
+  height:2.3rem;
+  text-align: center;
+}
+
+a {
+  word-break: break-all;
+}
+
+#content img {
+  position: relative;
+  left:50%;
+  transform: translate(-50%);
+}
+
+.lecture-list-shrink {
+  font-size: 90%;
+  z-index:1;
+  position: fixed;
+  left:2%;
+  top: 33%;
+  height: 55%;
+  width:22%;
+  background-image: linear-gradient(to right, #f9f9f8, #fefefe);
+  overflow-y: auto;
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+
+.lecture-list-shrink a {
+  color: #4a4a4f;
+  font-size: 90%;
+}
+.lecture-list-name {
+  color: #4a4a4a;
+  line-height: 2.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.6rem;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+}
+
+.lecture-list-selected {
+  background-color: #cacacf;
+  font-weight: bold;
+}
+
+.content-author {
+  font-size: 86%;
+  text-align: center;
+  color: #696969;
+  line-height: 2.4rem;
+}
+
+.footer-list-bar {
+  width: 3.2rem;
+  line-height: 2.2rem;
+  border-radius: 1.6rem;
+  text-align: center;
+  background-color: #e9e8ef;
+  color: #4a4a4a;
+  font-size: 102%;
+  white-space: nowrap;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0.5rem;
+  left:50%;
+  transform: translate(-50%);
+  z-index:1123;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+}
+
+.footer-lecture-block {
+  z-index: 2048;
+  position: fixed;
+  width: 83.5%;
+  left: 8%;
+  height: 45%;
+  overflow-y: auto;
+  white-space: nowrap;
+  overflow-x: auto;
+  bottom: 3.8rem;
+  text-align: left;
+  background-color: #dfdfea;
+  padding: 0.5rem;
+  padding-left:0.8rem;
+}
+
+.footer-lecture-block a {
+  color: #4a4a4f;
+}
+
+.footer-lecture-list {
+  overflow-y: auto;
+  font-size: 92%;
+}
+
+.table-no-wrap {
+  overflow: auto;
+  word-wrap: none;
+  word-break: normal;
+}
+
+.doc-title {
+  text-align:center;
+  background-color: #e5e9f1;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  padding: 0.45rem;
+}
