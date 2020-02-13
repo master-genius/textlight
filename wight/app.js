@@ -107,7 +107,8 @@ if (cluster.isWorker) {
         docpath: cfg.docpath,
         domain:  cfg.apidomain,
         grpLevel: cfg.group,
-        filter : cfg.filter
+        filter : cfg.filter,
+        parsetn: true
     });
 
     ldb.init();

@@ -8,7 +8,7 @@ class localimage {
         this.param = '/*';
         this.imageCount = 0;
         this.cacheSize = 0;
-        this.maxCache = 128000000; // ~ 128M
+        this.maxCache = 150000000; // ~ 150M
     }
 
     async get (c) {

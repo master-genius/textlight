@@ -32,6 +32,9 @@ class loaddoc {
     //指定按照哪一级目录作为分组。
     this.grpLevel = 0;
 
+    //是否把\n\n解析成<br>
+    this.parsetn = false;
+
     /**
      * 会添加在image路径后的参数pre=
      * 主要为了在指定加载路径，此时localimage接口要根据路径去讯寻找图片导致路径错误，
@@ -57,6 +60,9 @@ class loaddoc {
       }
       if (options.filter) {
         this.filter = options.filter;
+      }
+      if (options.parsetn) {
+        this.parsetn = options.parsetn;
       }
     }
 
@@ -199,12 +205,18 @@ class loaddoc {
 
   markdata (mdata, pkgdir) {
     //mdata = mdata.replace(/^\n$/g, '<br>');
+    var opts = {breaks:true, gfm: true};
+    if (this.parsetn) {
+      mdata = mdata.replace(/^\n$/mg, '<br>\n');
+      //opts = {gfm: true};
+    }
     mdata = this.replaceImageSrc(mdata, pkgdir);
-    let htmldata = marked(mdata, {breaks:true, gfm: true});
+
+    let htmldata = marked(mdata, opts);
     htmldata = this.setImageStyle(htmldata);
     htmldata = htmldata.replace(/\<p\>/ig, '<p style="margin-top:0.2rem;margin-bottom:0.2rem;">');
     htmldata = htmldata.replace(/<\/pre>/ig, '</pre><br>');
-    //htmldata = htmldata.replace(/^\n$/mg, '<br>');
+    
     return htmldata;
   }
 
@@ -375,7 +387,7 @@ class loaddoc {
           fs.accessSync(lecjson, fs.constants.F_OK);
           lecList = JSON.parse(fs.readFileSync(lecjson));
       } catch (err) {
-          console.log(err);
+          console.log(err.message);
           return false;
       }
 
