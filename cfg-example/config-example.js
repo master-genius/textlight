@@ -51,6 +51,14 @@ module.exports = {
   useDownload : true,
   downloadPath: __dirname + '/../website/download',
   downloadMax: 2,
+
+
+  /**
+   * 网站状态
+   * close public pirvate update maintain
+   */
+
+  status : 'private',
   
   /**
    * 针对高级用户，如果你是开发者，则可以设置启用自编写函数用于随机密码的验证。
