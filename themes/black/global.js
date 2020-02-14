@@ -36,39 +36,14 @@ var wo = new function() {
 
 };
 
-function formatTime(fmtstr = '', tim = null) {
-  var tm = (tim===null) ? new Date() : new Date(tim);
-
-  fstr = fmtstr.toLowerCase();
-  var join_char = '-';
-  if (fstr.indexOf('.') >= 0) {
-      join_char = '.';
-  }
-
-  var default_time = `${tm.getFullYear()}${join_char}${tm.getMonth()+1}${join_char}${tm.getDate()}`;
-
-  switch (fstr) {
-    case 'y-m-d':
-    case 'y.m.d':
-      return default_time;
-
-    case 'y-m-d-h':
-    case 'y.m.d.h':
-      return `${default_time}${join_char}${tm.getHours()}`;
-
-    case 'y-m-d h:m:s':
-      return `${default_time} ${tm.getHours()}:${tm.getMinutes()}:${tm.getSeconds()}`;
-    
-    case 'y-m-d-h_m_s':
-      return `${default_time}-${tm.getHours()}_${tm.getMinutes()}_${tm.getSeconds()}`;
-
-    default:
-      return default_time;
-  }
-
-}
-
 async function apiCall (path, options = {}) {
+  let token = localStorage.getItem('session');
+  let q = '?';
+  if (path.indexOf('?') > 0) {
+      q = '&';
+  }
+  path += q+'token='+token;
+
   return fetch (path, options)
         .then(res => {
             if (options.dataType && options.dateType !== 'json') {
@@ -162,32 +137,19 @@ var _dm = new function () {
       }
     }
   };
-  this.loadingInterVal = null;
-  this.loadingText = [
-    '&nbsp;&nbsp; . &nbsp;&nbsp;&nbsp; . &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.',
-    '&nbsp;&nbsp;&nbsp;&nbsp; . &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .',
-    '&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .',
-    '.&nbsp;&nbsp;.'
-  ];
+
+  this.loadingText = '<div class="spinner"></div>';
   this.loading = function () {
     let d = document.getElementById('sys-loading');
     if (!d) {return ;}
-    d.style.cssText = 'z-index:1000;position:fixed;top:18%;width:50%;left:45%;font-weight:bold;text-shadow:0.2rem 0.2rem #e9e9e9;';
-    d.innerHTML = '. . .';
-    var ind = 0;
-    self.loadingInterVal = setInterval(() => {
-      ind += 1;
-      if (ind >= self.loadingText.length) {
-        ind = 0;
-      }
-      d.innerHTML = self.loadingText[ind];
-    }, 350);
+
+    d.style.cssText = 'z-index:1000;position:fixed;top:18%;width:10%;left:45%;';
+    d.innerHTML = self.loadingText;
   };
   
   this.unloading = function () {
     let d = document.getElementById('sys-loading');
     if (!d) {return ;}
-    clearInterval(self.loadingInterVal);
     d.innerHTML = '';
     d.style.cssText = '';
   };
@@ -212,6 +174,7 @@ var _dm = new function () {
 
 function renderMenu (ml) {
   let d = document.getElementById('menu');
+  let dr = document.getElementById('menu-drawer');
   if (!d) {return ;}
   ml.sort((a, b) => {
     if (a.keywords == b.keywords) {
@@ -221,7 +184,10 @@ function renderMenu (ml) {
   });
   
   _dm.renderList(d, ml, (m) => {
-    return `<a href="/page/show?id=${m.id}" class="button">${m.title}</a>`;
+    return `<a href="/show?id=${m.id}" class="button">${m.title}</a>`;
+  }, true);
+  _dm.renderList(dr, ml, (m) => {
+    return `<a href="/show?id=${m.id}" class="drawer-menu-a" style="color: #424245;">${m.title}</a>`;
   }, true);
 }
 
@@ -233,4 +199,60 @@ window.onpageshow = function () {
       sysnotify(d.errmsg, 'err');
     }
   });
+};
+
+function totalPage (t, p) {
+  if (p == 0) {
+    return 0;
+  }
+  return (t % p == 0) ? t/p : parseInt(t/p) + 1;
+}
+
+var _gotoTop = new function () {
+
+  this.hideGotoTop = function () {
+    let t = document.getElementById('goto-top');
+    if (t) {
+      t.innerHTML = '';
+      t.style.cssText = '';
+      t.className = '';
+    }
+  };
+
+  this.showGotoTop = function () {
+    let t = document.getElementById('goto-top');
+    if (t) {
+      t.innerHTML = '<a href="javascript:_gotoTop.gotoTop();" style="line-height:5rem;text-align:center;"><img src="/theme/icon/top.png"></a>';
+      t.style.cssText = 'z-index:1;position:fixed;right:3.2%;bottom:2%;line-height:3rem;';
+    }
+  };
+
+  this._gotoToping = false;
+  this.gotoTop = function () {
+    var sctop = document.body.scrollTop + document.documentElement.scrollTop;
+    this.hideGotoTop();
+    _gotoToping = true;
+    var i=0;
+    var interval = setInterval (() => {
+      if (sctop <= 0) {
+        clearInterval(interval);
+        _gotoToping = false;
+        return ;
+      }
+      sctop -= 180 + (10*i++);
+      if (sctop < 0) {sctop = 0;}
+      document.documentElement.scrollTop = sctop;
+      document.body.scrollTop = sctop;
+    }, 30);
+  };
+
+  this.onScroll = function () {
+    let sctop = document.body.scrollTop + document.documentElement.scrollTop;
+    if (sctop < 20 || this._gotoToping) {
+      this.hideGotoTop();
+      return ;
+    }
+    this.showGotoTop();
+  };
+
 };

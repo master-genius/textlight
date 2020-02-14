@@ -100,6 +100,14 @@ class side {
     }
   } */
 
+  __mid () {
+    return [
+      {
+        name : 'sitestatus'
+      }
+    ]
+  }
+
 }
 
 module.exports = side;

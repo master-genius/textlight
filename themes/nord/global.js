@@ -37,6 +37,13 @@ var wo = new function() {
 };
 
 async function apiCall (path, options = {}) {
+  let token = localStorage.getItem('session');
+  let q = '?';
+  if (path.indexOf('?') > 0) {
+      q = '&';
+  }
+  path += q+'token='+token;
+
   return fetch (path, options)
         .then(res => {
             if (options.dataType && options.dateType !== 'json') {

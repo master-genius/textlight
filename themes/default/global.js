@@ -37,6 +37,13 @@ var wo = new function() {
 };
 
 async function apiCall (path, options = {}) {
+  let token = localStorage.getItem('session');
+  let q = '?';
+  if (path.indexOf('?') > 0) {
+      q = '&';
+  }
+  path += q+'token='+token;
+
   return fetch (path, options)
         .then(res => {
             if (options.dataType && options.dateType !== 'json') {
@@ -167,6 +174,7 @@ var _dm = new function () {
 
 function renderMenu (ml) {
   let d = document.getElementById('menu');
+  let dr = document.getElementById('menu-drawer');
   if (!d) {return ;}
   ml.sort((a, b) => {
     if (a.keywords == b.keywords) {
@@ -176,7 +184,10 @@ function renderMenu (ml) {
   });
   
   _dm.renderList(d, ml, (m) => {
-    return `<a href="/page/show?id=${m.id}" class="button">${m.title}</a>`;
+    return `<a href="/show?id=${m.id}" class="button">${m.title}</a>`;
+  }, true);
+  _dm.renderList(dr, ml, (m) => {
+    return `<a href="/show?id=${m.id}" class="drawer-menu-a" style="color: #424245;">${m.title}</a>`;
   }, true);
 }
 
@@ -196,3 +207,52 @@ function totalPage (t, p) {
   }
   return (t % p == 0) ? t/p : parseInt(t/p) + 1;
 }
+
+var _gotoTop = new function () {
+
+  this.hideGotoTop = function () {
+    let t = document.getElementById('goto-top');
+    if (t) {
+      t.innerHTML = '';
+      t.style.cssText = '';
+      t.className = '';
+    }
+  };
+
+  this.showGotoTop = function () {
+    let t = document.getElementById('goto-top');
+    if (t) {
+      t.innerHTML = '<a href="javascript:_gotoTop.gotoTop();" style="line-height:5rem;text-align:center;"><img src="/theme/icon/top.png"></a>';
+      t.style.cssText = 'z-index:1;position:fixed;right:3.2%;bottom:2%;line-height:3rem;';
+    }
+  };
+
+  this._gotoToping = false;
+  this.gotoTop = function () {
+    var sctop = document.body.scrollTop + document.documentElement.scrollTop;
+    this.hideGotoTop();
+    _gotoToping = true;
+    var i=0;
+    var interval = setInterval (() => {
+      if (sctop <= 0) {
+        clearInterval(interval);
+        _gotoToping = false;
+        return ;
+      }
+      sctop -= 180 + (10*i++);
+      if (sctop < 0) {sctop = 0;}
+      document.documentElement.scrollTop = sctop;
+      document.body.scrollTop = sctop;
+    }, 30);
+  };
+
+  this.onScroll = function () {
+    let sctop = document.body.scrollTop + document.documentElement.scrollTop;
+    if (sctop < 20 || this._gotoToping) {
+      this.hideGotoTop();
+      return ;
+    }
+    this.showGotoTop();
+  };
+
+};

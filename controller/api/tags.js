@@ -23,6 +23,14 @@ class tags {
                     c.service.funcs);
     c.res.body = c.service.api.ret(0, tlist);
   }
+
+  __mid () {
+    return [
+      {
+        name : 'sitestatus'
+      }
+    ]
+  }
 }
 
 module.exports = tags;

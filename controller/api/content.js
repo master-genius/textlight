@@ -18,6 +18,14 @@ class content {
     let data = await c.service.docs.doclist(c.query);
     c.res.body = c.service.api.ret(0, data);
   }
+
+  __mid () {
+    return [
+      {
+        name : 'sitestatus',
+      }
+    ];
+  }
 }
 
 module.exports = content;

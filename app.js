@@ -103,6 +103,8 @@ if (cluster.isWorker) {
   app.service.cors = cfg.cors;
   app.service.expires = cfg.expires * 1000;
 
+  app.service.sitestatus = cfg.status;
+
   app.service.usePassCallback = false;
   app.service.permsource = '';
   try {
@@ -256,7 +258,7 @@ if (cluster.isWorker) {
     } catch (err) {
         c.status(404);
     }
-  }, '@page-static');
+  }, '@static-source');
 
   app.router.get('/theme/*', async c => {
     var encoding = 'utf8';
