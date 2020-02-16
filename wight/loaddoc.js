@@ -204,18 +204,19 @@ class loaddoc {
   }
 
   markdata (mdata, pkgdir) {
-    //mdata = mdata.replace(/^\n$/g, '<br>');
+    //mdata = mdata.replace(/^\n$/mg, '<br>');
     var opts = {breaks:true, gfm: true};
-    if (this.parsetn) {
-      mdata = mdata.replace(/^\n$/mg, '<br>\n');
-      //opts = {gfm: true};
-    }
+    
     mdata = this.replaceImageSrc(mdata, pkgdir);
 
     let htmldata = marked(mdata, opts);
     htmldata = this.setImageStyle(htmldata);
     htmldata = htmldata.replace(/\<p\>/ig, '<p style="margin-top:0.2rem;margin-bottom:0.2rem;">');
     htmldata = htmldata.replace(/<\/pre>/ig, '</pre><br>');
+    if (this.parsetn) {
+      htmldata = htmldata.replace(/<\/p>/ig, '<br>');
+      //opts = {gfm: true};
+    }
     
     return htmldata;
   }
