@@ -214,7 +214,7 @@ class loaddoc {
     htmldata = htmldata.replace(/\<p\>/ig, '<p style="margin-top:0.2rem;margin-bottom:0.2rem;">');
     htmldata = htmldata.replace(/<\/pre>/ig, '</pre><br>');
     if (this.parsetn) {
-      htmldata = htmldata.replace(/<\/p>/ig, '<br>');
+      htmldata = htmldata.replace(/<\/p>/ig, '</p><br>');
       //opts = {gfm: true};
     }
     
