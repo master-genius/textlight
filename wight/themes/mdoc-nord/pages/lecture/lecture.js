@@ -120,14 +120,21 @@ function loadLectureHome(lec) {
 }
 
 function showLectureList() {
+    var chtitlepreg = /ch\d+[\.\-].*/i;
     var html = `<div class="lecture-list-ch">
         <span onclick="showDescri();" class="lecture-list-name">简介</span>
     </div>`;
     var ind = 1;
+    var tmptitle = '';
     for (let k in _lec_map) {
+        if (chtitlepreg.test(_lec_map[k])) {
+            tmptitle = _lec_map[k];
+        } else {
+            tmptitle = `ch${ind > 9 ? '' : '0'}${ind}. ${_lec_map[k]}`;
+        }
         html += `<div class="lecture-list-ch" id="${k}">
           <a href="javascript:;" onclick="showCurContent(this);" id="${k}" class="lecture-list-name" title="${_lec_map[k]}">
-            ch${ind > 9 ? '' : '0'}${ind}. ${_lec_map[k]}
+            ${tmptitle}
           </a>
         </div>`;
         ind += 1;
