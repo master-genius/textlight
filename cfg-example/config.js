@@ -66,7 +66,7 @@ module.exports = {
    * 这时候，并非原密码没有用，而是输入密码时还要使用//跟上新的密码才可以登录。
    * 如何使用，则交给开发者决定。
    */
-  usePassCallback: true,
+  usePassCallback: false,
   permsource : [3, 4, 7, 23, 45, 67, 342, 651, 568, 'awedc', 'ahord'],
   passCallback: (a, pstr) => {
     return pstr == `${a[0]}${a[2]}`;
