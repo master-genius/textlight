@@ -14,20 +14,29 @@ for (let i=0;i<qarr.length; i++) {
 }
 
 function renderContent(d) {
+  d.content = d.content.replace(/\<img/ig, '<img lazyload="on" ');
   var html = `<div>
-    <h3>${d.title}</h3>
+    <div class="doc-title">
+      <h3>${d.title}</h3>
+    </div>
     <p><hr></hr></p>
     <p>${d.content}</p>
   </div>`;
   let dm = document.getElementById('content');
   if (dm) {
     dm.innerHTML = html;
+    let ads = dm.querySelectorAll('a');
+    for(let i=0;i<ads.length;i++) {
+      ads[i].target="_blank";
+    }
   }
+  document.querySelector('title').innerHTML += ' - ' + d.title;
 }
 
 
 window.onload = function () {
   if (_id !== null && _id.trim().length > 0) {
+    _dm.loading();
     apiCall('/api/content/'+_id).then(d => {
       if (d.status == 'OK') {
         renderContent(d.data);
@@ -37,6 +46,12 @@ window.onload = function () {
     })
     .catch (err => {
       sysnotify(err.message, 'err');
+    }).finally(() => {
+      _dm.unloading();
     });
   }
+};
+
+window.onscroll = function () {
+  _gotoTop.onScroll();
 };

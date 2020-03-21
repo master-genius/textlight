@@ -43,8 +43,8 @@ async function getCount() {
 }
 
 function fmtDoc(d) {
-  return `<div class="card"><a href="/page/show?id=${d.id}" target="_blank">
-    <h4 style="color:#4a4a4f;">${d.title.trim()}</h4>
+  return `<div class="card"><a href="/show?id=${d.id}" target="_blank">
+    <h5 style="color:#4a4a4f;" class="title-inline">${d.title.trim()}</h5>
     <p style="color:#676869;">
      ${d.updatetime.substring(0,16).replace('T', ' ')}
     </p>
@@ -58,6 +58,7 @@ function docList () {
   apiCall('/api/content?type=news'+qstr).then(d => {
     _dm.renderList(document.getElementById('doc-list'), d.data, fmtDoc);
     document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }).catch(err => {
 
   });
@@ -82,7 +83,10 @@ async function listenOrSearch(t) {
     setTimeout(() => {
       _inputOutTime = 0;
       wo.set('doc-home-kwd', t.value.trim());
-      t.onchange(t);
+      if (t.value === '') {
+        document.getElementById('clear-search-btn').className = 'hidden';
+      }
+      searchDoc(t);
     }, 666);
     return ;
   }
@@ -95,6 +99,44 @@ async function getSiteInfo() {
     }
   })
   .catch(err => {});
+}
+
+function loadSideInfo(data) {
+  let d = document.getElementById('side-info');
+  if (d) {
+    d.innerHTML = data;
+  }
+}
+
+async function getSideInfo () {
+  return apiCall('/api/side/word').then(d => {
+    if (d.status === 'OK') {
+      loadSideInfo(d.data);
+    }
+  }).catch (err => {});
+}
+
+function searchClickTag (tag) {
+  let d = document.getElementById('search-kwd');
+  d.value = `@${tag}`;
+  searchDoc(d);
+}
+
+async function getTags () {
+  return apiCall('/api/tags').then(d => {
+    if (d.status === 'OK') {
+      let td = document.getElementById('doc-tags');
+      var ht = '';
+      let tags = d.data.split(',').filter(p=>p.length > 0);
+      let tmp = '';
+      for (let i=0; i< tags.length; i++) {
+        tmp = tags[i].trim();
+        ht += `<div class="card"><a href="javascript:searchClickTag('${tmp}');" style="color:#bc5920;">${tmp}</a></div>`;
+      }
+      td.innerHTML = ht;
+    }
+  })
+  .catch (err => { console.log(err); });
 }
 
 window.onload = async function() {
@@ -112,4 +154,31 @@ window.onload = async function() {
     document.getElementById('sitename').innerHTML = si.sitename;
     document.getElementById('sitename').cite = location.host;
   }
+  getSideInfo();
+  getTags();
+};
+
+function showClear(t) {
+  if (t.value.trim() === '') {
+    document.getElementById('clear-search-btn').className = 'hidden';
+    return ;
+  }
+  document.getElementById('clear-search-btn').className = '';
+}
+
+function hideClear(t) {
+  setTimeout(() => {
+    document.getElementById('clear-search-btn').className = 'hidden';
+  }, 450);
+}
+
+function clearSearch() {
+  document.getElementById('clear-search-btn').className = 'hidden';
+  let d = document.getElementById('search-kwd');
+  d.value = '';
+  searchDoc(d);
+}
+
+window.onscroll = function () {
+  _gotoTop.onScroll();
 };

@@ -79,26 +79,29 @@ class page {
       <body>
         <div class="container">
           <div class="row">
-            <div class="col-sm-1 col-md-1 col-lg-2"></div>
-            <div class="col-sm-10 col-md-10 col-lg-8">
-              <header id="menu">
+            <div class="col-md-1 col-lg-2"></div>
+            <div class="col-sm-12 col-md-10 col-lg-8">
+              <header id="menu" class="visually-hidden-sm">
                 <a href="/" class="button">首页</a>
               </header>
+              <div class="visually-hidden-md visually-hidden-lg">
+                <label for="drawer-control" class="drawer-toggle" style="margin-top:0.15rem;"></label>
+                <input type="checkbox" id="drawer-control" class="drawer">
+                <div id="menu-drawer">
+                  <label for="drawer-control" class="drawer-close"></label>
+                  <br>
+                  <a href="/" class="drawer-menu-a" style="color: #424245;">首页</a>
+                </div>
+              </div>
             </div>
-            <div class="col-sm-1 col-md-1 col-lg-2"></div>
+            <div class="col-md-1 col-lg-2"></div>
           </div>
         </div>
         
         <div class="container" id="__main__" style="margin-top:0.5rem;">
-          <div class="row">
-            <div class="col-sm-1 col-md-1 col-lg-2"></div>
-            <div class="col-sm-10 col-md-10 col-lg-8">
-              ${p.main}
-            </div>
-            <div class="col-sm-1 col-md-1 col-lg-2"></div>
-          </div>
+          ${p.main}
         </div>
-
+        <br>
         <div class="container">
           ${this.si.footer}
         </div>
@@ -109,6 +112,7 @@ class page {
           </div>
           <div class="col-sm-1 col-md-1 col-lg-2"></div>
         </div>
+        <br>
         <div id="sys-notify"></div>
         <div id="sys-cover"></div>
         <div id="sys-loading"></div>
@@ -190,34 +194,34 @@ class page {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,height=device-height">
         <title>${p.title}</title>
-        <link href="https://cdn.bootcss.com/foundation/6.5.3/css/foundation.min.css" rel="stylesheet">
+        <link href="/theme/css/mini-nord.min.css" rel="stylesheet">
         ${p.header}
         <style>
           ${p.globalcss}
         </style>
       </head>
       <body>
-        <div class="full-container">
-          <div class="grid-x">
-            <div class="cell small-12" style="padding:0.4rem;line-height:2.2rem;text-align:center;background:#f2f1f9;">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12" style="padding:0.4rem;line-height:2.2rem;text-align:center;">
               ${p.sitename}
             </div>
           </div>
         </div>
 
-        <div class="full-container" id="main">
-          <div class="grid-x">
-            <div class="cell small-1 medium-3 large-4"></div>
-            <div class="cell small-10 medium-6 large-4">
+        <div class="container" id="main">
+          <div class="row">
+            <div class="col-md-2 col-lg-3"></div>
+            <div class="col-sm-12 col-md-8 col-lg-6" style="padding:0.6rem;">
               <h3>404 : 没有此页面，请点击回到首页</h3>
               <a href="/">首页</a>
             </div>
-            <div class="cell small-1 medium-3 large-4"></div>
+            <div class="col-md-2 col-lg-3"></div>
           </div>
         </div>
 
-        <div class="full-container">
-          ${p.footer}
+        <div class="container">
+          ${this.si.footer}
         </div>
         <div id="sys-notify"></div>
         <script>

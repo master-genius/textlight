@@ -1,0 +1,23 @@
+.doc-block {
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 0.2px;
+}
+
+a {
+  color: #424245;
+}
+
+.title-inline {
+  width:100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.goto-top {
+  background: #2e3440;
+  border-radius: 1.2rem;
+  color: #fafafa;
+  padding:0.6rem;
+}
