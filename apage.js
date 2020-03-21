@@ -147,7 +147,7 @@ class apage {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,height=device-height">
         <title>${p.title}</title>
-        <link href="https://cdn.bootcss.com/foundation/6.5.3/css/foundation.min.css" rel="stylesheet">
+        <link href="/static/css/foundation.min.css" rel="stylesheet">
         ${p.header}
         <style>
           ${p.globalcss}
