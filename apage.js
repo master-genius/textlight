@@ -87,7 +87,9 @@ class apage {
         <div class="full-container">
           <div class="grid-x">
           <div class="cell small-3 medium-3 large-2" style="padding:0.4rem;line-height:2.2rem;text-align:center;background:#f1f0f5;">
-            <a style="font-size:121%;color:4a4a4f;" target="_blank" href="javascript:;"><img src="/a/siteimage/logo.png" style="width:28px;height:auto;">TextLight</a>
+            <span style="font-size:121%;color:4a4a4f;">
+              <img src="/a/siteimage/logo.png" style="width:28px;height:auto;">TextLight
+            </span>
           </div>
           <div class="cell small-9 medium-9 large-10" style="text-align:center;line-height:2.2rem;border-bottom:solid 0.06rem #eaeaef;padding:0.5rem;background:#afafb2;">
             ${p.topinfo}
