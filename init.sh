@@ -87,7 +87,7 @@ if [ ! -f "config/dblock" ] ; then
 fi
 
 if [ ! -f "config/config.js" ] ; then
-    cp cfg-example/config-example.js config/config.js
+    cp cfg-example/config.js config/config.js
 fi
 
 echo '如果要修改连接配置，可以编辑config/dbconfig.js'
