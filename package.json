@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "gohttp": "^2.0.2",
-    "marked": "^0.7.0",
+    "marked": "^4.0.10",
     "pg": "^7.12.1",
     "titbit": "^5.1.7",
     "titbit-loader": "^1.3.2"
